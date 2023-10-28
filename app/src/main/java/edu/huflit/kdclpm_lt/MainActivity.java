@@ -2,7 +2,10 @@ package edu.huflit.kdclpm_lt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -10,11 +13,13 @@ import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 public class MainActivity extends AppCompatActivity {
 
     MyDatabase database;
+    ImageView next_login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         database = new MyDatabase(this);
+        anhXa();
         //Tạo tài khoản admin
         boolean checkAdmin  = database.checkAdmin();
         if (checkAdmin == false) {
@@ -30,5 +35,16 @@ public class MainActivity extends AppCompatActivity {
             //Trả về loaisach chứa các thông tin của loại sách
             database.addUser(user);
         }
+        next_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), DangNhap.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void anhXa()
+    {
+        next_login = (ImageView) findViewById(R.id.img_main);
     }
 }
