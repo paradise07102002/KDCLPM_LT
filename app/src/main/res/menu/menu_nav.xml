@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_tittle1" android:title="title1" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/nav_tittle2" android:title="title1" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/nav_tittle3" android:title="Quản lý sách mượn" android:icon="@drawable/icon_user"/>
+    </group>
+    <item android:title="account">
+        <menu>
+            <item android:id="@+id/nav_tittle4" android:title="myprofile" android:icon="@drawable/icon_user"/>
+            <item android:id="@+id/nav_tittle5" android:title="Đổi mật khẩu" android:icon="@drawable/icon_user"/>
+            <item android:id="@+id/nav_tittle6" android:title="Đăng xuất" android:icon="@drawable/icon_user"/>
+        </menu>
+    </item>
+</menu>

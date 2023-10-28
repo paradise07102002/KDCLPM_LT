@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">KDCLPM_LT</string>
+    <string name="nav_t1">Tittle 1</string>
+    <string name="nav_t2">Tittle 1</string>
+    <string name="nav_t3">Tittle 1</string>
+    <string name="nav_t4">Tittle 1</string>
+    <string name="nav_t5">Tittle 1</string>
+    <string name="nav_t6">Tittle 1</string>
+
+    <string name="navigation_drawer_open">Open Navigation</string>
+    <string name="navigation_drawer_close">Close Navigation</string>
 </resources>

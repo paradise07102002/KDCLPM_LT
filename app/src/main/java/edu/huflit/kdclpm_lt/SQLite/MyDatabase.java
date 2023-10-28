@@ -55,4 +55,11 @@ public class MyDatabase {
             return true;
         }
     }
+    //Lấy thông tin User khi có username
+    public Cursor getUserByUsername(String username)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
 }
