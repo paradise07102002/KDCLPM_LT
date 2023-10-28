@@ -60,28 +60,4 @@
         android:layout_marginTop="15dp"
         android:text="Login"
         app:cornerRadius="10dp" />
-    <LinearLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:textStyle="bold"
-            android:textSize="16dp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="75dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bạn đã có tài khoản" />
-        <TextView
-            android:id="@+id/login2_next_dangky"
-            android:layout_marginLeft="25dp"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            android:textColor="#00BFFF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng ký" />
-    </LinearLayout>
 </LinearLayout>
