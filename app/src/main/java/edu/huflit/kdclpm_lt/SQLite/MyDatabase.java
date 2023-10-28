@@ -41,4 +41,18 @@ public class MyDatabase {
         values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
         return database.insert(DBHelper.TABLE_USER, null, values);
     }
+    //Kiểm tra đăng nhập
+    public boolean checkLogin(String username, String password)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'" + " AND " + DBHelper.PASSWORD_USER + " = " + "'" + password + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst() == false)
+        {
+            return false;//Ko đúng user or pass
+        }
+        else
+        {
+            return true;
+        }
+    }
 }
