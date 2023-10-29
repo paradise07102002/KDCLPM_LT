@@ -110,4 +110,18 @@ public class MyDatabase {
         contentValues.put(DBHelper.TEN_LOAI_SACH_LS, loaiSach.getLoai_sach_ls());
         return database.update(DBHelper.TABLE_LOAI_SACH, contentValues, DBHelper.MA_LOAI_SACH_LS + " = " + loaiSach.getMa_loai_sach_ls(), null);
     }
+    //Kiểm tra tên đầu sách tồn tại chưa
+    public boolean kiemTraTenDS(String ten_dau_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.TEN_LOAI_SACH_LS + " = " + "'" + ten_dau_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst() == true)
+        {
+            return true;//có tồn tại
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
