@@ -83,4 +83,11 @@ public class MyDatabase {
         }
         return false;//Mã loại sách không tồn tại
     }
+    //Lấy thông tin đầu sách
+    public Cursor layDuLieuDauSach()
+    {
+        String[] cot = {DBHelper.MA_LOAI_SACH_LS, DBHelper.TEN_LOAI_SACH_LS};
+        Cursor cursor = database.query(DBHelper.TABLE_LOAI_SACH, cot, null, null, null, null, null);
+        return cursor;
+    }
 }
