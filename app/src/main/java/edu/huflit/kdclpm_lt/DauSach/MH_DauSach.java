@@ -54,16 +54,14 @@ public class MH_DauSach extends Fragment {
                 manHinhChinh.nextAddDauSach();
             }
         });
-
-
         return view;
     }
     public void anhXa()
     {
         next_add_dau_sach = (ImageView) view.findViewById(R.id.next_add_dau_sach);
-        img_back = (ImageView) view.findViewById(R.id.man_hinh_dau_sach_back);
+//        img_back = (ImageView) view.findViewById(R.id.man_hinh_dau_sach_back);
         listView = (ListView) view.findViewById(R.id.lv_dau_sach);
-        tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_dau_sach_null);
+//        tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_dau_sach_null);
     }
     public void capNhatDuLieuDSach()
     {

@@ -16,20 +16,20 @@
         android:src="@drawable/icon_add"
         android:layout_width="60dp"
         android:layout_height="60dp"/>
-    <ImageView
-        android:id="@+id/man_hinh_dau_sach_back"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_width="48dp"
-        android:layout_height="32dp"
-        android:src="@drawable/icon_back1"/>
-    <TextView
-        android:id="@+id/tv_dau_sach_null"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="250dp"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="#FF0000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/man_hinh_dau_sach_back"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:layout_width="48dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        android:src="@drawable/icon_back1"/>-->
+<!--    <TextView-->
+<!--        android:id="@+id/tv_dau_sach_null"-->
+<!--        android:layout_marginLeft="130dp"-->
+<!--        android:layout_marginTop="250dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textColor="#FF0000"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
 </FrameLayout>
