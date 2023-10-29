@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import edu.huflit.kdclpm_lt.Object.LoaiSach;
 import edu.huflit.kdclpm_lt.Object.User;
 
 public class MyDatabase {
@@ -61,5 +62,12 @@ public class MyDatabase {
         String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'";
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
+    }
+    //Thêm đầu sách
+    public long addLoaiSach(LoaiSach loaiSach)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.TEN_LOAI_SACH_LS, loaiSach.getLoai_sach_ls());
+        return database.insert(DBHelper.TABLE_LOAI_SACH, null, values);
     }
 }
