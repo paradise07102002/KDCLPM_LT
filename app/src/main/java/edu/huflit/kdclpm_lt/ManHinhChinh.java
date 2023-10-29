@@ -25,6 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
+import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
+import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -84,19 +86,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
                 return true;
             }
         });
-        //Kiểm tra đăng nhập, nếu chưa thì hiện đăng nhập, ngược lại hiện đăng xuất trên menu
-        //SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
-        Menu navigationMenu = navigationView.getMenu();
-        MenuItem menuItem = navigationMenu.findItem(R.id.nav_tittle6);
-        boolean check_login = sharedPreferences.getBoolean("is_login", false);
-        if (check_login == false)
-        {
-            menuItem.setTitle("Đăng nhập");
-        }
-        else
-        {
-            menuItem.setTitle("Đăng xuất");
-        }
     }
     public void anhXa()
     {
@@ -106,12 +95,13 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
     }
 
+    //ITEM TRÊN NAVIGATION
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_tittle1)
+        if (id == R.id.nav_ql_dau_sach)
         {
-
+            replaceFragment(new MH_DauSach());
         }
 
         //Đóng drawer
@@ -136,5 +126,23 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.hcontent_frame, fragment);
         transaction.commit();
+    }
+    //CHUYỂN FRAGMENT
+    //ĐẦU SÁCH
+    public void nextQLDauSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_DauSach mh_dauSach = new MH_DauSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mh_dauSach);
+        fragmentTransaction.commit();
+    }
+    public void nextAddDauSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddDauSach addDauSach = new AddDauSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addDauSach);
+        fragmentTransaction.commit();
     }
 }

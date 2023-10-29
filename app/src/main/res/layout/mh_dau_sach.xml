@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/lv_dau_sach"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="95dp"
+        android:layout_width="345dp"
+        android:layout_height="550dp">
+    </ListView>
+    <ImageView
+        android:layout_marginTop="575dp"
+        android:layout_marginLeft="295dp"
+        android:id="@+id/next_add_dau_sach"
+        android:src="@drawable/icon_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+    <ImageView
+        android:id="@+id/man_hinh_dau_sach_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon_back1"/>
+    <TextView
+        android:id="@+id/tv_dau_sach_null"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="250dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

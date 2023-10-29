@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             user.setEmail_user("admin@gmail.com");
             user.setPhone_user("0123456789");
             user.setRole_user("admin");
-            user.setLoai_kh_user("vip3");
+//            user.setLoai_kh_user("vip3");
             //Trả về loaisach chứa các thông tin của loại sách
             database.addUser(user);
         }
