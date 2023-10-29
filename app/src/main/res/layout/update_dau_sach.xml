@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/update_dau_sach_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        app:srcCompat="@drawable/icon_back1" />
+    <EditText
+        android:id="@+id/edt_ten_dau_sach_update"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="25dp"
+        android:paddingLeft="10dp"
+        android:hint="Nhập tên đầu sách mới"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:background="@drawable/edit_edittext1"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/btn_update_dau_sach"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="15dp"
+        android:text="Thêm đầu sách"
+        app:cornerRadius="7dp" />
+</LinearLayout>
