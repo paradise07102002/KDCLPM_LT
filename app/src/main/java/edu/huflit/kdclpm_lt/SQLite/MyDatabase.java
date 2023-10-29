@@ -38,7 +38,7 @@ public class MyDatabase {
         values.put(DBHelper.EMAIL_USER, user.getEmail_user());
         values.put(DBHelper.PHONE_USER, user.getPhone_user());
         values.put(DBHelper.ROLE_USER, user.getRole_user());
-        values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
+//        values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
         return database.insert(DBHelper.TABLE_USER, null, values);
     }
     //Kiểm tra đăng nhập
