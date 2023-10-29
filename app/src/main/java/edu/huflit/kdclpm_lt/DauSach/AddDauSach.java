@@ -1,10 +1,9 @@
-package edu.huflit.doanqlthuvien.fragment_dau_sach;
+package edu.huflit.kdclpm_lt.DauSach;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -19,11 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import edu.huflit.doanqlthuvien.ManHinhChinh;
-import edu.huflit.doanqlthuvien.MyDatabase;
-import edu.huflit.doanqlthuvien.OOP.LoaiSach;
-import edu.huflit.doanqlthuvien.R;
+import edu.huflit.kdclpm_lt.ManHinhChinh;
+import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.R;
+import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class AddDauSach extends Fragment {
     View view;
@@ -51,7 +49,7 @@ public class AddDauSach extends Fragment {
         img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manHinhChinh.gotoManHinhDauSach();
+                manHinhChinh.nextQLDauSach();
             }
         });
         setColorTextView();
@@ -115,7 +113,7 @@ public class AddDauSach extends Fragment {
                 builder.setPositiveButton("Quay về", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        manHinhChinh.gotoManHinhDauSach();
+                        manHinhChinh.nextQLDauSach();
                     }
                 });
                 builder.create().show();
