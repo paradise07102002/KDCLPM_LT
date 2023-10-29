@@ -102,4 +102,12 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //Sửa đầu sách
+    public long suaDauSach(LoaiSach loaiSach)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_LOAI_SACH_LS, loaiSach.getMa_loai_sach_ls());
+        contentValues.put(DBHelper.TEN_LOAI_SACH_LS, loaiSach.getLoai_sach_ls());
+        return database.update(DBHelper.TABLE_LOAI_SACH, contentValues, DBHelper.MA_LOAI_SACH_LS + " = " + loaiSach.getMa_loai_sach_ls(), null);
+    }
 }
