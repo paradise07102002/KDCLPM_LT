@@ -90,4 +90,9 @@ public class MyDatabase {
         Cursor cursor = database.query(DBHelper.TABLE_LOAI_SACH, cot, null, null, null, null, null);
         return cursor;
     }
+    //Xóa đầu sách
+    public long xoaDauSach(int ma_dau_sach)
+    {
+        return database.delete(DBHelper.TABLE_LOAI_SACH, DBHelper.MA_LOAI_SACH_LS + " = " + "'" + ma_dau_sach + "'", null);
+    }
 }
