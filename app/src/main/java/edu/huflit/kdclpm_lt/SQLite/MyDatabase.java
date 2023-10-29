@@ -70,4 +70,17 @@ public class MyDatabase {
         values.put(DBHelper.TEN_LOAI_SACH_LS, loaiSach.getLoai_sach_ls());
         return database.insert(DBHelper.TABLE_LOAI_SACH, null, values);
     }
+    //Kiểm tra tên đầu sách có tồn tại chưa
+    public boolean checkTenDauSach(String ten_dau_sach)
+    {
+        //Truy vấn lấy cột mã loại sách nếu mã loại sách nhập vào có trong Database
+        String select = "SELECT " + DBHelper.MA_LOAI_SACH_LS  + " FROM " + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.TEN_LOAI_SACH_LS + " = " + "'" + ten_dau_sach + "'";
+        //Đưa kết quả truy vấn vào trong cursor/ Do mã sách là duy nhất nên chỉ có thể tìm ra tối đa 1 đối tượng mã sách
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst())
+        {
+            return true;//Mã loại sách tồn tại
+        }
+        return false;//Mã loại sách không tồn tại
+    }
 }
