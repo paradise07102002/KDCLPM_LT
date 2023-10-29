@@ -27,6 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
+import edu.huflit.kdclpm_lt.DauSach.UpdateDauSach;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -143,6 +144,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         AddDauSach addDauSach = new AddDauSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, addDauSach);
+        fragmentTransaction.commit();
+    }
+    public void nextUpdateDauSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        UpdateDauSach updateDauSach = new UpdateDauSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, updateDauSach);
         fragmentTransaction.commit();
     }
 }
