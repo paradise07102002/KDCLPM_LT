@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import edu.huflit.doanqlthuvien.R;
-import edu.huflit.doanqlthuvien.fragment_dau_sach.ManHinhDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
 import edu.huflit.kdclpm_lt.R;
 
