@@ -1,8 +1,7 @@
-package edu.huflit.doanqlthuvien.fragment_dau_sach;
+package edu.huflit.kdclpm_lt.DauSach;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +19,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import edu.huflit.doanqlthuvien.DBHelper;
-import edu.huflit.doanqlthuvien.ManHinhChinh;
-import edu.huflit.doanqlthuvien.MyDatabase;
-import edu.huflit.doanqlthuvien.OOP.LoaiSach;
-import edu.huflit.doanqlthuvien.R;
+import edu.huflit.kdclpm_lt.ManHinhChinh;
+import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.R;
+import edu.huflit.kdclpm_lt.SQLite.DBHelper;
+import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class UpdateDauSach extends Fragment {
     View view;
@@ -71,7 +69,7 @@ public class UpdateDauSach extends Fragment {
 
                         database.suaDauSach(loaiSach);
                         Toast.makeText(getActivity(), "Cập nhật thành công", Toast.LENGTH_LONG).show();
-                        manHinhChinh.gotoManHinhDauSach();
+                        manHinhChinh.nextQLDauSach();
                     }
                 }
             }
@@ -79,7 +77,7 @@ public class UpdateDauSach extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manHinhChinh.gotoManHinhDauSach();
+                manHinhChinh.nextQLDauSach();
             }
         });
         return view;
