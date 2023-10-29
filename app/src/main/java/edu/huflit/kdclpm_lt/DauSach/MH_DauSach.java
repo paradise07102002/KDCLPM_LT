@@ -104,8 +104,92 @@ public class MH_DauSach extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SharedPreferences lay_ma_dau_sach = context.getSharedPreferences("lay_ma_dau_sach", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = lay_ma_dau_sach.edit();
+                int ma_dau_sach = loaiSaches.get(i).getMa_loai_sach_ls();
+                editor.putInt("ma_dau_sach", ma_dau_sach);
+                editor.apply();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                Drawable drawable = getResources().getDrawable(R.drawable.icon_question);
+                builder.setIcon(drawable);
+                builder.setTitle("Đầu sách");
+                builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
+                        builder1.setMessage("Bạn muốn xóa?");
+                        builder1.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SharedPreferences lay_ma_dau_sach = context.getSharedPreferences("lay_ma_dau_sach", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = lay_ma_dau_sach.edit();
+                                database.xoaDauSach(lay_ma_dau_sach.getInt("ma_dau_sach", -1));
+                                Toast.makeText(getActivity(), "Đã xóa đầu sách", Toast.LENGTH_LONG).show();
+                                capNhatListView();
+                                if (listView.getCount()<=0)
+                                {
+                                    tv_thong_bao_null.setText("Đầu sách trống");
+                                }
+                            }
+                        });
+                        builder1.setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                        builder1.create().show();
+                    }
+                });
+                builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        manHinhChinh.nextUpdateDauSach();
+                    }
+                });
+                builder.setNeutralButton("Xem chi tiết", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                builder.create().show();
             }
         });
+    }
+    public void capNhatListView()
+    {
+        if (loaiSaches == null)
+        {
+            loaiSaches = new ArrayList<LoaiSach>();
+        }
+        else
+        {
+            loaiSaches.removeAll(loaiSaches);
+        }
+        database = new MyDatabase(context);
+        Cursor cursor = database.layDuLieuDauSach();
+        if (cursor != null)
+        {
+            int ten_dau_sach_index = cursor.getColumnIndex(DBHelper.TEN_LOAI_SACH_LS);
+            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_LS);
+            while (cursor.moveToNext())
+            {
+                LoaiSach loaiSach = new LoaiSach();
+                if (ten_dau_sach_index != -1)
+                {
+                    loaiSach.setLoai_sach_ls(cursor.getString(ten_dau_sach_index));
+                }
+                if (ma_dau_sach_index != -1)
+                {
+                    loaiSach.setMa_loai_sach_ls(cursor.getInt(ma_dau_sach_index));
+                }
+                loaiSaches.add(loaiSach);
+            }
+        }
+        if (loaiSaches != null)
+        {
+            listView.setAdapter(new MyAdapterDMDauSach(context));
+        }
     }
 }
