@@ -124,4 +124,11 @@ public class MyDatabase {
             return false;
         }
     }
+    //Lấy dữ liệu sách
+    public Cursor layDuLieuSach()
+    {
+        String[] cot = {DBHelper.MA_SACH_S, DBHelper.TEN_SACH_S, DBHelper.IMAGE_SACH};
+        Cursor cursor = database.query(DBHelper.TABLE_SACH, cot, null, null, null, null, null);
+        return cursor;
+    }
 }
