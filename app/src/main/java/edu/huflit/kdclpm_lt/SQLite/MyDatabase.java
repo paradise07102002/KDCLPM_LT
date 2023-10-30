@@ -131,4 +131,9 @@ public class MyDatabase {
         Cursor cursor = database.query(DBHelper.TABLE_SACH, cot, null, null, null, null, null);
         return cursor;
     }
+    //Xóa sách
+    public long xoaSach(int ma_sach)
+    {
+        return database.delete(DBHelper.TABLE_SACH, DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'", null);
+    }
 }
