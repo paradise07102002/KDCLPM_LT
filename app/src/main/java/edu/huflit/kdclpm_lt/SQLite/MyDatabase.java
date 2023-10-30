@@ -143,4 +143,25 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //
+    public LoaiSach getMaDauSachByTenDS(String ten_dau_sach)
+    {
+        LoaiSach loaiSach = new LoaiSach();
+        String select = "SELECT * FROM "
+                + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.TEN_LOAI_SACH_LS + " = "
+                + "'" + ten_dau_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor != null)
+        {
+            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_LS);
+            while (cursor.moveToNext())
+            {
+                //có 10 bản ghi sách trong cursor
+                //moveToFirst chỉ tới cuốn sách đầu
+                loaiSach.setMa_loai_sach_ls(cursor.getInt(ma_dau_sach_index));
+            }
+        }
+        cursor.close();
+        return loaiSach;
+    }
 }
