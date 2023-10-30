@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.Object.User;
 
 public class MyDatabase {
@@ -163,5 +164,19 @@ public class MyDatabase {
         }
         cursor.close();
         return loaiSach;
+    }
+    //Thêm sách
+    public long addBook(Sach sach)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.MA_LOAI_SACH_S, sach.getMa_loai_sach_s());
+        values.put(DBHelper.TEN_SACH_S, sach.getTen_sach_s());
+        values.put(DBHelper.TAC_GIA_S, sach.getTac_gia_s());
+        values.put(DBHelper.NHA_XUAT_BAN_S, sach.getNha_xuat_ban_s());
+        values.put(DBHelper.NAM_XUAT_BAN_S, sach.getNam_xuat_ban_s());
+        values.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
+        values.put(DBHelper.TRANG_THAI_S, 0);
+        values.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
+        return database.insert(DBHelper.TABLE_SACH, null, values);
     }
 }
