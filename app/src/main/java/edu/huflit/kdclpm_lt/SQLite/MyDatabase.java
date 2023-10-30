@@ -136,4 +136,11 @@ public class MyDatabase {
     {
         return database.delete(DBHelper.TABLE_SACH, DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'", null);
     }
+    //
+    public Cursor layFullDuLieuDauSach()
+    {
+        String select = "SELECT " + DBHelper.TEN_LOAI_SACH_LS + " FROM " + DBHelper.TABLE_LOAI_SACH;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
 }
