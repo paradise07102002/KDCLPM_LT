@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.Object.User;
 
 public class MyDatabase {
@@ -94,5 +95,108 @@ public class MyDatabase {
     public long xoaDauSach(int ma_dau_sach)
     {
         return database.delete(DBHelper.TABLE_LOAI_SACH, DBHelper.MA_LOAI_SACH_LS + " = " + "'" + ma_dau_sach + "'", null);
+    }
+    //Lấy dữ liệu đầu sách khi có id đầu sách
+    public Cursor layDuLieuDauSachByID(int ma_dau_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.MA_LOAI_SACH_LS + " = " + ma_dau_sach;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    //Sửa đầu sách
+    public long suaDauSach(LoaiSach loaiSach)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_LOAI_SACH_LS, loaiSach.getMa_loai_sach_ls());
+        contentValues.put(DBHelper.TEN_LOAI_SACH_LS, loaiSach.getLoai_sach_ls());
+        return database.update(DBHelper.TABLE_LOAI_SACH, contentValues, DBHelper.MA_LOAI_SACH_LS + " = " + loaiSach.getMa_loai_sach_ls(), null);
+    }
+    //Kiểm tra tên đầu sách tồn tại chưa
+    public boolean kiemTraTenDS(String ten_dau_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.TEN_LOAI_SACH_LS + " = " + "'" + ten_dau_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst() == true)
+        {
+            return true;//có tồn tại
+        }
+        else
+        {
+            return false;
+        }
+    }
+    //Lấy dữ liệu sách
+    public Cursor layDuLieuSach()
+    {
+        String[] cot = {DBHelper.MA_SACH_S, DBHelper.TEN_SACH_S, DBHelper.IMAGE_SACH};
+        Cursor cursor = database.query(DBHelper.TABLE_SACH, cot, null, null, null, null, null);
+        return cursor;
+    }
+    //Xóa sách
+    public long xoaSach(int ma_sach)
+    {
+        return database.delete(DBHelper.TABLE_SACH, DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'", null);
+    }
+    //
+    public Cursor layFullDuLieuDauSach()
+    {
+        String select = "SELECT " + DBHelper.TEN_LOAI_SACH_LS + " FROM " + DBHelper.TABLE_LOAI_SACH;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    //
+    public LoaiSach getMaDauSachByTenDS(String ten_dau_sach)
+    {
+        LoaiSach loaiSach = new LoaiSach();
+        String select = "SELECT * FROM "
+                + DBHelper.TABLE_LOAI_SACH + " WHERE " + DBHelper.TEN_LOAI_SACH_LS + " = "
+                + "'" + ten_dau_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor != null)
+        {
+            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_LS);
+            while (cursor.moveToNext())
+            {
+                //có 10 bản ghi sách trong cursor
+                //moveToFirst chỉ tới cuốn sách đầu
+                loaiSach.setMa_loai_sach_ls(cursor.getInt(ma_dau_sach_index));
+            }
+        }
+        cursor.close();
+        return loaiSach;
+    }
+    //Thêm sách
+    public long addBook(Sach sach)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.MA_LOAI_SACH_S, sach.getMa_loai_sach_s());
+        values.put(DBHelper.TEN_SACH_S, sach.getTen_sach_s());
+        values.put(DBHelper.TAC_GIA_S, sach.getTac_gia_s());
+        values.put(DBHelper.NHA_XUAT_BAN_S, sach.getNha_xuat_ban_s());
+        values.put(DBHelper.NAM_XUAT_BAN_S, sach.getNam_xuat_ban_s());
+        values.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
+        values.put(DBHelper.TRANG_THAI_S, 0);
+        values.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
+        return database.insert(DBHelper.TABLE_SACH, null, values);
+    }
+    //
+    public Cursor layDuLieuSachByID(int ma_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_SACH_S + " = " + ma_sach;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    //Sửa sách
+    public long suaSach(Sach sach)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_SACH_S, sach.getMa_sach_s());
+        contentValues.put(DBHelper.TEN_SACH_S, sach.getTen_sach_s());
+        contentValues.put(DBHelper.TAC_GIA_S, sach.getTac_gia_s());
+        contentValues.put(DBHelper.NHA_XUAT_BAN_S, sach.getNha_xuat_ban_s());
+        contentValues.put(DBHelper.NAM_XUAT_BAN_S, sach.getNam_xuat_ban_s());
+        contentValues.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
+        contentValues.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
+        return database.update(DBHelper.TABLE_SACH, contentValues, DBHelper.MA_SACH_S + " = " + sach.getMa_sach_s(), null);
     }
 }

@@ -1,4 +1,4 @@
-package edu.huflit.kdclpm_lt.DauSach;
+package edu.huflit.kdclpm_lt.Sach;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -22,98 +22,101 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
-import edu.huflit.kdclpm_lt.Adapter.MyAdapterDMDauSach;
+import edu.huflit.kdclpm_lt.Adapter.MyAdapterDMSach;
 import edu.huflit.kdclpm_lt.ManHinhChinh;
-import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.R;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
-public class MH_DauSach extends Fragment {
+public class MH_Sach extends Fragment {
     View view;
-    ImageView next_add_dau_sach, img_back;
-    TextView tv_thong_bao_null;
-    public static ManHinhChinh manHinhChinh;
+    ImageView next_add_sach;
+    ManHinhChinh manHinhChinh;
     MyDatabase database;
-    public static Context context;
     public static ListView listView;
-    public static ArrayList<LoaiSach> loaiSaches;
+    public static ArrayList<Sach> saches;
+    TextView tv_thong_bao_null;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.mh_dau_sach, container, false);
-        context = getContext();
-        database = new MyDatabase(context);
-        anhXa();
+        view = inflater.inflate(R.layout.mh_sach, container, false);
+        database = new MyDatabase(getActivity());
+        saches = new ArrayList<>();
         manHinhChinh = (ManHinhChinh) getActivity();
-        capNhatDuLieuDSach();
-        //ẤN VÀO BUTTON ĐỂ TỚI MÀN HÌNH THÊM ĐẦU SÁCH
-        next_add_dau_sach.setOnClickListener(new View.OnClickListener() {
+        anhXa();
+        next_add_sach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manHinhChinh.nextAddDauSach();
+                manHinhChinh.nextAddSach();
             }
         });
+        capNhatDuLieuDSach();
         return view;
     }
     public void anhXa()
     {
-        next_add_dau_sach = (ImageView) view.findViewById(R.id.next_add_dau_sach);
-        //img_back = (ImageView) view.findViewById(R.id.man_hinh_dau_sach_back);
-        listView = (ListView) view.findViewById(R.id.lv_dau_sach);
-        //tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_dau_sach_null);
+//        back = (ImageView) view.findViewById(R.id.man_hinh_sach_back);
+        next_add_sach = (ImageView) view.findViewById(R.id.next_add_sach);
+        listView = (ListView) view.findViewById(R.id.lv_sach);
+        tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_sach_null);
     }
     public void capNhatDuLieuDSach()
     {
-        if (loaiSaches == null)
+        if (saches == null)
         {
-            loaiSaches = new ArrayList<LoaiSach>();
+            saches = new ArrayList<Sach>();
         }
         else
         {
-            loaiSaches.removeAll(loaiSaches);
+            saches.removeAll(saches);
         }
-        database = new MyDatabase(context);
-        Cursor cursor = database.layDuLieuDauSach();
+        database = new MyDatabase(getActivity());
+        Cursor cursor = database.layDuLieuSach();
         if (cursor != null)
         {
-            int ten_dau_sach_index = cursor.getColumnIndex(DBHelper.TEN_LOAI_SACH_LS);
-            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_LS);
+            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
+            int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
+            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
             while (cursor.moveToNext())
             {
-                LoaiSach loaiSach = new LoaiSach();
-                if (ten_dau_sach_index != -1)
+                Sach sach = new Sach();
+                if (ten_sach_index != -1)
                 {
-                    loaiSach.setLoai_sach_ls(cursor.getString(ten_dau_sach_index));
+                    sach.setTen_sach_s(cursor.getString(ten_sach_index));
                 }
-                if (ma_dau_sach_index != -1)
+                if (ma_sach_index != -1)
                 {
-                    loaiSach.setMa_loai_sach_ls(cursor.getInt(ma_dau_sach_index));
+                    sach.setMa_sach_s(cursor.getInt(ma_sach_index));
                 }
-                loaiSaches.add(loaiSach);
+                if (img_sach_index != -1)
+                {
+                    sach.setImage_sach(cursor.getBlob(img_sach_index));
+                }
+                saches.add(sach);
             }
         }
-        if (loaiSaches != null)
+        if (saches != null)
         {
-            listView.setAdapter(new MyAdapterDMDauSach(context));
+            listView.setAdapter(new MyAdapterDMSach(getActivity()));
         }
         if (listView.getCount()<=0)
         {
-
+            tv_thong_bao_null.setText("RỖNG");
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                SharedPreferences lay_ma_dau_sach = context.getSharedPreferences("lay_ma_dau_sach", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = lay_ma_dau_sach.edit();
-                int ma_dau_sach = loaiSaches.get(i).getMa_loai_sach_ls();
-                editor.putInt("ma_dau_sach", ma_dau_sach);
+                SharedPreferences lay_ma_sach = getActivity().getSharedPreferences("lay_ma_sach", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = lay_ma_sach.edit();
+                int ma_sach = saches.get(i).getMa_sach_s();
+                editor.putInt("ma_sach", ma_sach);
                 editor.apply();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 Drawable drawable = getResources().getDrawable(R.drawable.icon_question);
                 builder.setIcon(drawable);
-                builder.setTitle("Đầu sách");
+                builder.setTitle("Sách");
                 builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -122,14 +125,14 @@ public class MH_DauSach extends Fragment {
                         builder1.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                SharedPreferences lay_ma_dau_sach = context.getSharedPreferences("lay_ma_dau_sach", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = lay_ma_dau_sach.edit();
-                                database.xoaDauSach(lay_ma_dau_sach.getInt("ma_dau_sach", -1));
-                                Toast.makeText(getActivity(), "Đã xóa đầu sách", Toast.LENGTH_LONG).show();
+                                SharedPreferences lay_ma_sach = getActivity().getSharedPreferences("lay_ma_sach", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = lay_ma_sach.edit();
+                                database.xoaSach(lay_ma_sach.getInt("ma_sach", -1));
+                                Toast.makeText(getActivity(), "Đã xóa sách", Toast.LENGTH_LONG).show();
                                 capNhatListView();
                                 if (listView.getCount()<=0)
                                 {
-                                    tv_thong_bao_null.setText("Đầu sách trống");
+                                    tv_thong_bao_null.setText("Sách trống");
                                 }
                             }
                         });
@@ -145,12 +148,13 @@ public class MH_DauSach extends Fragment {
                 builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        manHinhChinh.nextUpdateDauSach();
+                        manHinhChinh.nextUpdateSach();
                     }
                 });
                 builder.setNeutralButton("Xem chi tiết", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        manHinhChinh.nextDetailSach();
                     }
                 });
                 builder.create().show();
@@ -159,37 +163,42 @@ public class MH_DauSach extends Fragment {
     }
     public void capNhatListView()
     {
-        if (loaiSaches == null)
+        if (saches == null)
         {
-            loaiSaches = new ArrayList<LoaiSach>();
+            saches = new ArrayList<Sach>();
         }
         else
         {
-            loaiSaches.removeAll(loaiSaches);
+            saches.removeAll(saches);
         }
-        database = new MyDatabase(context);
-        Cursor cursor = database.layDuLieuDauSach();
+        database = new MyDatabase(getActivity());
+        Cursor cursor = database.layDuLieuSach();
         if (cursor != null)
         {
-            int ten_dau_sach_index = cursor.getColumnIndex(DBHelper.TEN_LOAI_SACH_LS);
-            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_LS);
+            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
+            int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
+            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
             while (cursor.moveToNext())
             {
-                LoaiSach loaiSach = new LoaiSach();
-                if (ten_dau_sach_index != -1)
+                Sach sach = new Sach();
+                if (ten_sach_index != -1)
                 {
-                    loaiSach.setLoai_sach_ls(cursor.getString(ten_dau_sach_index));
+                    sach.setTen_sach_s(cursor.getString(ten_sach_index));
                 }
-                if (ma_dau_sach_index != -1)
+                if (ma_sach_index != -1)
                 {
-                    loaiSach.setMa_loai_sach_ls(cursor.getInt(ma_dau_sach_index));
+                    sach.setMa_sach_s(cursor.getInt(ma_sach_index));
                 }
-                loaiSaches.add(loaiSach);
+                if (img_sach_index != -1)
+                {
+                    sach.setImage_sach(cursor.getBlob(img_sach_index));
+                }
+                saches.add(sach);
             }
         }
-        if (loaiSaches != null)
+        if (saches != null)
         {
-            listView.setAdapter(new MyAdapterDMDauSach(context));
+            listView.setAdapter(new MyAdapterDMSach(getActivity()));
         }
     }
 }

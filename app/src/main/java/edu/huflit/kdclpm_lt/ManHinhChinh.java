@@ -27,9 +27,14 @@ import com.google.android.material.navigation.NavigationView;
 
 import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
+import edu.huflit.kdclpm_lt.DauSach.UpdateDauSach;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
+import edu.huflit.kdclpm_lt.Sach.AddSach;
+import edu.huflit.kdclpm_lt.Sach.DetailSach;
+import edu.huflit.kdclpm_lt.Sach.MH_Sach;
+import edu.huflit.kdclpm_lt.Sach.UpdateSach;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -102,6 +107,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_ql_dau_sach)
         {
             replaceFragment(new MH_DauSach());
+        } else if (id == R.id.nav_ql_sach) {
+            replaceFragment(new MH_Sach());
         }
 
         //Đóng drawer
@@ -143,6 +150,46 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         AddDauSach addDauSach = new AddDauSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, addDauSach);
+        fragmentTransaction.commit();
+    }
+    public void nextUpdateDauSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        UpdateDauSach updateDauSach = new UpdateDauSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, updateDauSach);
+        fragmentTransaction.commit();
+    }
+    public void nextQLSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_Sach mh_sach = new MH_Sach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mh_sach);
+        fragmentTransaction.commit();
+    }
+    public void nextAddSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddSach addSach = new AddSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addSach);
+        fragmentTransaction.commit();
+    }
+    public void nextUpdateSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        UpdateSach updateSach = new UpdateSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, updateSach);
+        fragmentTransaction.commit();
+    }
+    public void nextDetailSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailSach detailSach = new DetailSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, detailSach);
         fragmentTransaction.commit();
     }
 }
