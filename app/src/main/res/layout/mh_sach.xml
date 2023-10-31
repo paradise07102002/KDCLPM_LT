@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <ListView
+        android:dividerHeight="10dp"
+        android:divider="@color/white"
         android:id="@+id/lv_sach"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="25dp"
