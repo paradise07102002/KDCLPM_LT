@@ -1,7 +1,6 @@
-package edu.huflit.doanqlthuvien.fragment_sach;
+package edu.huflit.kdclpm_lt.Sach;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -23,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.squareup.picasso.Picasso;
@@ -32,12 +30,12 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.huflit.doanqlthuvien.DBHelper;
-import edu.huflit.doanqlthuvien.ManHinhChinh;
-import edu.huflit.doanqlthuvien.MyDatabase;
-import edu.huflit.doanqlthuvien.OOP.LoaiSach;
-import edu.huflit.doanqlthuvien.OOP.Sach;
-import edu.huflit.doanqlthuvien.R;
+import edu.huflit.kdclpm_lt.ManHinhChinh;
+import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.Sach;
+import edu.huflit.kdclpm_lt.R;
+import edu.huflit.kdclpm_lt.SQLite.DBHelper;
+import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class UpdateSach extends Fragment {
     View view;
@@ -67,6 +65,7 @@ public class UpdateSach extends Fragment {
             int ten_tg_index = cursor.getColumnIndex(DBHelper.TAC_GIA_S);
             int nha_xb_index = cursor.getColumnIndex(DBHelper.NHA_XUAT_BAN_S);
             int nam_xb_index = cursor.getColumnIndex(DBHelper.NAM_XUAT_BAN_S);
+            int image_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
 
             cursor.moveToFirst();
             ten_sach.setText(cursor.getString(ten_sach_index));
@@ -112,14 +111,14 @@ public class UpdateSach extends Fragment {
 
                     database.suaSach(sach);
                     Toast.makeText(getActivity(), "Cập nhật thành công", Toast.LENGTH_LONG).show();
-                    manHinhChinh.gotoManHinhSach();
+                    manHinhChinh.nextQLSach();
                 }
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manHinhChinh.gotoManHinhSach();
+                manHinhChinh.nextQLSach();
             }
         });
         showSpinner();

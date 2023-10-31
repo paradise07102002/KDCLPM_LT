@@ -31,7 +31,7 @@ import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class MH_Sach extends Fragment {
     View view;
-    ImageView back, next_add_sach;
+    ImageView next_add_sach;
     ManHinhChinh manHinhChinh;
     MyDatabase database;
     public static ListView listView;
@@ -48,13 +48,7 @@ public class MH_Sach extends Fragment {
         next_add_sach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+                manHinhChinh.nextAddSach();
             }
         });
         capNhatDuLieuDSach();
@@ -62,7 +56,7 @@ public class MH_Sach extends Fragment {
     }
     public void anhXa()
     {
-        back = (ImageView) view.findViewById(R.id.man_hinh_sach_back);
+//        back = (ImageView) view.findViewById(R.id.man_hinh_sach_back);
         next_add_sach = (ImageView) view.findViewById(R.id.next_add_sach);
         listView = (ListView) view.findViewById(R.id.lv_sach);
         tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_sach_null);
@@ -154,13 +148,13 @@ public class MH_Sach extends Fragment {
                 builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        manHinhChinh.nextUpdateSach();
                     }
                 });
                 builder.setNeutralButton("Xem chi tiết", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        manHinhChinh.nextDetailSach();
                     }
                 });
                 builder.create().show();

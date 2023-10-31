@@ -201,48 +201,24 @@
             android:background="@color/black" />
 
         <LinearLayout
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:text="Bình luận"
+                android:text="Mô tả"
                 android:layout_marginLeft="15dp"
                 android:textSize="16dp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <ListView
-                android:id="@+id/lv_show_bl"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edit_edittext2"
-                android:layout_width="390dp"
+            <TextView
+                android:id="@+id/detail_sach_mota"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_height="250dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/edt_binh_luan"
-                    android:hint="Bình luận ..."
-                    android:paddingLeft="15dp"
-                    android:background="@drawable/edit_edittext2"
-                    android:layout_width="325dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:inputType="text"/>
-
-                <ImageView
-                    android:id="@+id/img_send"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/icon_send" />
-            </LinearLayout>
+                android:textColor="@color/black"
+                android:textSize="16dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
