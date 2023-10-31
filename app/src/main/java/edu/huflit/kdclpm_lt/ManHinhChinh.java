@@ -33,6 +33,7 @@ import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 import edu.huflit.kdclpm_lt.Sach.AddSach;
 import edu.huflit.kdclpm_lt.Sach.MH_Sach;
+import edu.huflit.kdclpm_lt.Sach.UpdateSach;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -172,6 +173,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         AddSach addSach = new AddSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, addSach);
+        fragmentTransaction.commit();
+    }
+    public void nextUpdateSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        UpdateSach updateSach = new UpdateSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, updateSach);
         fragmentTransaction.commit();
     }
 }
