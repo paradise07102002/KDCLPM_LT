@@ -199,4 +199,17 @@ public class MyDatabase {
         contentValues.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
         return database.update(DBHelper.TABLE_SACH, contentValues, DBHelper.MA_SACH_S + " = " + sach.getMa_sach_s(), null);
     }
+    //Kiểm tra nếu đầu sách có chứa sách
+    public boolean checkDauSach(int ma_dau_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_LOAI_SACH_S + " = " + ma_dau_sach;
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst())
+        {
+            cursor.close();
+            return true;// có sách
+        }
+        cursor.close();
+        return false;//không có sách
+    }
 }
