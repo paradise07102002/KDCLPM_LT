@@ -29,6 +29,7 @@ import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
 import edu.huflit.kdclpm_lt.DauSach.UpdateDauSach;
 import edu.huflit.kdclpm_lt.DocGia.AddDocGia;
+import edu.huflit.kdclpm_lt.DocGia.MH_DocGia;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -199,6 +200,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         AddDocGia addDocGia = new AddDocGia();
 
         fragmentTransaction.replace(R.id.hcontent_frame, addDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextQLDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_DocGia mhDocGia = new MH_DocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mhDocGia);
         fragmentTransaction.commit();
     }
 }
