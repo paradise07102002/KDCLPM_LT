@@ -48,6 +48,7 @@
         </LinearLayout>
     </LinearLayout>
     <EditText
+        android:inputType="text"
         android:id="@+id/add_sach_name"
         android:background="@drawable/edit_edittext2"
         android:layout_marginTop="15dp"
