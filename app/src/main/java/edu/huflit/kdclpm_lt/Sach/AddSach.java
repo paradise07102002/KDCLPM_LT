@@ -1,4 +1,4 @@
-package edu.huflit.doanqlthuvien.fragment_sach;
+package edu.huflit.kdclpm_lt.Sach;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,25 +17,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import edu.huflit.doanqlthuvien.DBHelper;
-import edu.huflit.doanqlthuvien.ManHinhChinh;
-import edu.huflit.doanqlthuvien.MyDatabase;
-import edu.huflit.doanqlthuvien.OOP.LoaiSach;
-import edu.huflit.doanqlthuvien.OOP.Sach;
-import edu.huflit.doanqlthuvien.R;
 
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.huflit.kdclpm_lt.ManHinhChinh;
+import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.Sach;
+import edu.huflit.kdclpm_lt.R;
+import edu.huflit.kdclpm_lt.SQLite.DBHelper;
+import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class AddSach extends Fragment {
     View view;
@@ -86,7 +84,7 @@ public class AddSach extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                manHinhChinh.gotoManHinhSach();
+
             }
         });
         showSpinner();
@@ -233,7 +231,7 @@ public class AddSach extends Fragment {
             builder.setPositiveButton("Quay về", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    manHinhChinh.gotoManHinhSach();
+
                 }
             });
             builder.create().show();
