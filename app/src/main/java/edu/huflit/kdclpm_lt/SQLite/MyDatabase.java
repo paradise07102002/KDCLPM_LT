@@ -179,4 +179,11 @@ public class MyDatabase {
         values.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
         return database.insert(DBHelper.TABLE_SACH, null, values);
     }
+    //
+    public Cursor layDuLieuSachByID(int ma_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_SACH_S + " = " + ma_sach;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
 }
