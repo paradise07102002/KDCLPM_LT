@@ -186,4 +186,17 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //Sửa sách
+    public long suaSach(Sach sach)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_SACH_S, sach.getMa_sach_s());
+        contentValues.put(DBHelper.TEN_SACH_S, sach.getTen_sach_s());
+        contentValues.put(DBHelper.TAC_GIA_S, sach.getTac_gia_s());
+        contentValues.put(DBHelper.NHA_XUAT_BAN_S, sach.getNha_xuat_ban_s());
+        contentValues.put(DBHelper.NAM_XUAT_BAN_S, sach.getNam_xuat_ban_s());
+        contentValues.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
+        contentValues.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
+        return database.update(DBHelper.TABLE_SACH, contentValues, DBHelper.MA_SACH_S + " = " + sach.getMa_sach_s(), null);
+    }
 }
