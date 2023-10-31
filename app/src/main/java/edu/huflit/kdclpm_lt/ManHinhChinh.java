@@ -111,6 +111,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             replaceFragment(new MH_DauSach());
         } else if (id == R.id.nav_ql_sach) {
             replaceFragment(new MH_Sach());
+        } else if (id == R.id.nav_ql_doc_gia) {
+            replaceFragment(new MH_DocGia());
         }
 
         //Đóng drawer
