@@ -28,6 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
 import edu.huflit.kdclpm_lt.DauSach.UpdateDauSach;
+import edu.huflit.kdclpm_lt.DocGia.AddDocGia;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -190,6 +191,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         DetailSach detailSach = new DetailSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, detailSach);
+        fragmentTransaction.commit();
+    }
+    public void nextAddDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddDocGia addDocGia = new AddDocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addDocGia);
         fragmentTransaction.commit();
     }
 }
