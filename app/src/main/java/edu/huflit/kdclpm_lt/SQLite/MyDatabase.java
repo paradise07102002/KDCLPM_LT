@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import edu.huflit.kdclpm_lt.Object.DocGia;
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
 import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.Object.User;
@@ -42,6 +43,14 @@ public class MyDatabase {
         values.put(DBHelper.ROLE_USER, user.getRole_user());
 //        values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
         return database.insert(DBHelper.TABLE_USER, null, values);
+    }
+    public long addDocGia(DocGia docGia)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
+        values.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        values.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
+        return database.insert(DBHelper.TABLE_DOC_GIA, null, values);
     }
     //Kiểm tra đăng nhập
     public boolean checkLogin(String username, String password)
