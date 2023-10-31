@@ -32,6 +32,7 @@ import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 import edu.huflit.kdclpm_lt.Sach.AddSach;
+import edu.huflit.kdclpm_lt.Sach.DetailSach;
 import edu.huflit.kdclpm_lt.Sach.MH_Sach;
 import edu.huflit.kdclpm_lt.Sach.UpdateSach;
 
@@ -181,6 +182,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         UpdateSach updateSach = new UpdateSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, updateSach);
+        fragmentTransaction.commit();
+    }
+    public void nextDetailSach()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailSach detailSach = new DetailSach();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, detailSach);
         fragmentTransaction.commit();
     }
 }
