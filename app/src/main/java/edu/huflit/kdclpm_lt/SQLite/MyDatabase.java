@@ -225,6 +225,17 @@ public class MyDatabase {
         contentValues.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
         return database.update(DBHelper.TABLE_SACH, contentValues, DBHelper.MA_SACH_S + " = " + sach.getMa_sach_s(), null);
     }
+    //
+    public long suaDocGia(DocGia docGia)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_DOC_GIA, docGia.getMa_doc_gia());
+        contentValues.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
+        contentValues.put(DBHelper.ADDRESS_DOC_GIA, docGia.getAddress_doc_gia());
+        return database.update(DBHelper.TABLE_DOC_GIA, contentValues, DBHelper.MA_DOC_GIA + " = " + docGia.getMa_doc_gia(), null);
+    }
     //Kiểm tra nếu đầu sách có chứa sách
     public boolean checkDauSach(int ma_dau_sach)
     {
