@@ -57,6 +57,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TEN_DOC_GIA = "ten_doc_gia";
     public static final String EMAIL_DOC_GIA = "email_doc_gia";
     public static final String PHONE_DOC_GIA = "phone_doc_gia";
+    public static final String ADDRESS_DOC_GIA = "address_doc_gia";
+    public static final String IMAGE_DOC_GIA = "image_doc_gia";
 
     //BẢNG MƯỢN TRẢ SÁCH
     public static final String TABLE_MUON_TRA= "MuonTraSach";
@@ -90,9 +92,11 @@ public class DBHelper extends SQLiteOpenHelper {
     //TẠO BẢNG ĐỌC GIẢ
     private static final String TAO_TABLE_DOC_GIA = ""
             + "CREATE TABLE " + TABLE_DOC_GIA + "( "
+            + IMAGE_DOC_GIA + " BLOB, "
             + MA_DOC_GIA + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + TEN_DOC_GIA + " TEXT NOT NULL, "
             + EMAIL_DOC_GIA + " TEXT NOT NULL, "
+            + ADDRESS_DOC_GIA + " TEXT NOT NULL, "
             + PHONE_DOC_GIA + " TEXT NOT NULL)";
     //TẠO BẢNG SÁCH
     private static final String TAO_TABLE_SACH = ""
