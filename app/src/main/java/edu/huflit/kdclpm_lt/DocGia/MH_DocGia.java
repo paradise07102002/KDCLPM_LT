@@ -70,6 +70,7 @@ public class MH_DocGia extends Fragment {
         }
         Cursor cursor = database.layDuLieuDocGia();
         if (cursor != null) {
+            int ma_dg_index = cursor.getColumnIndex(DBHelper.MA_DOC_GIA);
             int ten_dg_index = cursor.getColumnIndex(DBHelper.TEN_DOC_GIA);
             int email_dg_index = cursor.getColumnIndex(DBHelper.EMAIL_DOC_GIA);
             int phone_dg_index = cursor.getColumnIndex(DBHelper.PHONE_DOC_GIA);
@@ -78,6 +79,10 @@ public class MH_DocGia extends Fragment {
 
             while (cursor.moveToNext()) {
                 DocGia docGia = new DocGia();
+                if (ma_dg_index != -1)
+                {
+                    docGia.setMa_doc_gia(cursor.getInt(ma_dg_index));
+                }
                 if (ten_dg_index != -1) {
                     docGia.setTen_doc_gia(cursor.getString(ten_dg_index));
                 }
@@ -105,10 +110,9 @@ public class MH_DocGia extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                SharedPreferences lay_ma_dg = getActivity().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = lay_ma_dg.edit();
-                int ma_dg = docGias.get(i).getMa_doc_gia();
-                editor.putInt("ma_dg", ma_dg);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("ma_dg",docGias.get(i).getMa_doc_gia());
                 editor.apply();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -122,7 +126,7 @@ public class MH_DocGia extends Fragment {
                 builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        manHinhChinh.nextUpdateDocGia();
                     }
                 });
                 builder.setNeutralButton("Xem chi tiết", new DialogInterface.OnClickListener() {
