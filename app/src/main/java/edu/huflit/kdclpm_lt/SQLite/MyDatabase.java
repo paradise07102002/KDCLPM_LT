@@ -205,6 +205,13 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //
+    public Cursor layDuLieuDGByID(int ma_dg)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA + " WHERE " + DBHelper.MA_SACH_S + " = " + ma_dg;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Sửa sách
     public long suaSach(Sach sach)
     {
