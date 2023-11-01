@@ -28,6 +28,10 @@ import com.google.android.material.navigation.NavigationView;
 import edu.huflit.kdclpm_lt.DauSach.AddDauSach;
 import edu.huflit.kdclpm_lt.DauSach.MH_DauSach;
 import edu.huflit.kdclpm_lt.DauSach.UpdateDauSach;
+import edu.huflit.kdclpm_lt.DocGia.AddDocGia;
+import edu.huflit.kdclpm_lt.DocGia.DetailDocGia;
+import edu.huflit.kdclpm_lt.DocGia.MH_DocGia;
+import edu.huflit.kdclpm_lt.DocGia.UpdateDocGia;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -109,6 +113,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             replaceFragment(new MH_DauSach());
         } else if (id == R.id.nav_ql_sach) {
             replaceFragment(new MH_Sach());
+        } else if (id == R.id.nav_ql_doc_gia) {
+            replaceFragment(new MH_DocGia());
         }
 
         //Đóng drawer
@@ -190,6 +196,38 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         DetailSach detailSach = new DetailSach();
 
         fragmentTransaction.replace(R.id.hcontent_frame, detailSach);
+        fragmentTransaction.commit();
+    }
+    public void nextAddDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddDocGia addDocGia = new AddDocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextQLDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_DocGia mhDocGia = new MH_DocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mhDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextQLDetailDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        DetailDocGia detailDocGia = new DetailDocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, detailDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextUpdateDocGia()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        UpdateDocGia updateDocGia = new UpdateDocGia();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, updateDocGia);
         fragmentTransaction.commit();
     }
 }

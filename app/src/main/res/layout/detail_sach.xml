@@ -11,7 +11,6 @@
         android:layout_height="725dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/edit_edittext3"
         android:orientation="vertical">
 
         <ImageView
@@ -25,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="15dp">
 
             <ImageView
                 android:id="@+id/detail_sach_img"
@@ -164,13 +163,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="340dp"
-            android:layout_height="1dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/black" />
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -207,7 +199,8 @@
             android:orientation="vertical">
             <TextView
                 android:text="Mô tả"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
                 android:textSize="16dp"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -216,7 +209,8 @@
                 android:id="@+id/detail_sach_mota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/black"
                 android:textSize="16dp" />
         </LinearLayout>

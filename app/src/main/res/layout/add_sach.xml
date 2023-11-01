@@ -58,6 +58,7 @@
         android:layout_width="315dp"
         android:layout_height="45dp"/>
     <EditText
+        android:inputType="text"
         android:id="@+id/add_sach_tg"
         android:background="@drawable/edit_edittext2"
         android:layout_marginTop="15dp"
@@ -67,6 +68,7 @@
         android:layout_width="315dp"
         android:layout_height="45dp"/>
     <EditText
+        android:inputType="text"
         android:id="@+id/add_sach_nhaxb"
         android:background="@drawable/edit_edittext2"
         android:layout_marginTop="15dp"

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/add_doc_gia_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon_back1"/>
+    <ImageView
+        android:id="@+id/add_dg_avartar"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/icon_camera" />
+    <EditText
+        android:inputType="text"
+        android:id="@+id/add_dg_name"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Họ tên đọc giả"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="text"
+        android:id="@+id/add_dg_email"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Email liên hệ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="number"
+        android:id="@+id/add_dg_phone"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Số điện thoại liên hệ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="text"
+        android:id="@+id/add_dg_address"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Địa chỉ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <Button
+        android:id="@+id/add_dg_btn"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:text="Thêm"
+        />
+</LinearLayout>

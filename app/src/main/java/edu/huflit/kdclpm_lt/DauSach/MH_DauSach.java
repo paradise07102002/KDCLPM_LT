@@ -123,13 +123,21 @@ public class MH_DauSach extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 SharedPreferences lay_ma_dau_sach = context.getSharedPreferences("lay_ma_dau_sach", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = lay_ma_dau_sach.edit();
-                                database.xoaDauSach(lay_ma_dau_sach.getInt("ma_dau_sach", -1));
-                                Toast.makeText(getActivity(), "Đã xóa đầu sách", Toast.LENGTH_LONG).show();
-                                capNhatListView();
-                                if (listView.getCount()<=0)
+                                //Kiểm tra đầu sách có chứa sách không
+                                boolean ktra = database.checkDauSach(lay_ma_dau_sach.getInt("ma_dau_sach", 0));
+                                if (ktra)
                                 {
-                                    tv_thong_bao_null.setText("Đầu sách trống");
+                                    Toast.makeText(getActivity(), "Không thể xóa", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    database.xoaDauSach(lay_ma_dau_sach.getInt("ma_dau_sach", -1));
+                                    Toast.makeText(getActivity(), "Đã xóa đầu sách", Toast.LENGTH_LONG).show();
+                                    capNhatListView();
+                                    if (listView.getCount()<=0)
+                                    {
+                                        tv_thong_bao_null.setText("Đầu sách trống");
+                                    }
                                 }
                             }
                         });

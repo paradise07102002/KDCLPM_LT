@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import edu.huflit.kdclpm_lt.Object.DocGia;
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
 import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.Object.User;
@@ -42,6 +43,17 @@ public class MyDatabase {
         values.put(DBHelper.ROLE_USER, user.getRole_user());
 //        values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
         return database.insert(DBHelper.TABLE_USER, null, values);
+    }
+    public long addDocGia(DocGia docGia)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.ADDRESS_DOC_GIA, docGia.getAddress_doc_gia());
+        contentValues.put(DBHelper.IMAGE_DOC_GIA, docGia.getImage_doc_gia());
+        return database.insert(DBHelper.TABLE_DOC_GIA, null, contentValues);
     }
     //Kiểm tra đăng nhập
     public boolean checkLogin(String username, String password)
@@ -96,6 +108,10 @@ public class MyDatabase {
     {
         return database.delete(DBHelper.TABLE_LOAI_SACH, DBHelper.MA_LOAI_SACH_LS + " = " + "'" + ma_dau_sach + "'", null);
     }
+    public long xoaDocGia(int ma_dg)
+    {
+        return database.delete(DBHelper.TABLE_DOC_GIA, DBHelper.MA_DOC_GIA + " = " + "'" + ma_dg + "'", null);
+    }
     //Lấy dữ liệu đầu sách khi có id đầu sách
     public Cursor layDuLieuDauSachByID(int ma_dau_sach)
     {
@@ -130,6 +146,13 @@ public class MyDatabase {
     {
         String[] cot = {DBHelper.MA_SACH_S, DBHelper.TEN_SACH_S, DBHelper.IMAGE_SACH};
         Cursor cursor = database.query(DBHelper.TABLE_SACH, cot, null, null, null, null, null);
+        return cursor;
+    }
+    //Lấy dữ liệu đoc giả
+    public Cursor layDuLieuDocGia()
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA;
+        Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
     //Xóa sách
@@ -186,6 +209,13 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //
+    public Cursor layDuLieuDGByID(int ma_dg)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA + " WHERE " + DBHelper.MA_DOC_GIA + " = " + ma_dg;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Sửa sách
     public long suaSach(Sach sach)
     {
@@ -198,5 +228,30 @@ public class MyDatabase {
         contentValues.put(DBHelper.MO_TA_SACH, sach.getMo_ta_sach());
         contentValues.put(DBHelper.IMAGE_SACH, sach.getImage_sach());
         return database.update(DBHelper.TABLE_SACH, contentValues, DBHelper.MA_SACH_S + " = " + sach.getMa_sach_s(), null);
+    }
+    //
+    public long suaDocGia(DocGia docGia)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.MA_DOC_GIA, docGia.getMa_doc_gia());
+        contentValues.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
+        contentValues.put(DBHelper.ADDRESS_DOC_GIA, docGia.getAddress_doc_gia());
+        contentValues.put(DBHelper.IMAGE_DOC_GIA, docGia.getImage_doc_gia());
+        return database.update(DBHelper.TABLE_DOC_GIA, contentValues, DBHelper.MA_DOC_GIA + " = " + docGia.getMa_doc_gia(), null);
+    }
+    //Kiểm tra nếu đầu sách có chứa sách
+    public boolean checkDauSach(int ma_dau_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_LOAI_SACH_S + " = " + ma_dau_sach;
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst())
+        {
+            cursor.close();
+            return true;// có sách
+        }
+        cursor.close();
+        return false;//không có sách
     }
 }

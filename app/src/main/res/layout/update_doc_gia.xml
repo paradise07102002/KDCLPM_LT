@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/update_doc_gia_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon_back1"/>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/update_dg_avartar"
+            android:layout_marginLeft="25dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_camera"/>
+        <TextView
+            android:text="Mã đọc giả:"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/update_dg_ma_dg"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <EditText
+        android:inputType="text"
+        android:id="@+id/update_dg_name"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Họ tên đọc giả"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="text"
+        android:id="@+id/update_dg_email"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Email liên hệ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="number"
+        android:id="@+id/update_dg_phone"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Số điện thoại liên hệ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <EditText
+        android:inputType="text"
+        android:id="@+id/update_dg_address"
+        android:background="@drawable/edit_edittext2"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Địa chỉ"
+        android:paddingLeft="10dp"
+        android:layout_width="315dp"
+        android:layout_height="45dp"/>
+    <Button
+        android:id="@+id/update_dg_btn"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:text="Cập nhật"
+        />
+</LinearLayout>
