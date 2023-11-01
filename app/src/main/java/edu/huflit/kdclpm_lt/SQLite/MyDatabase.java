@@ -234,6 +234,7 @@ public class MyDatabase {
         contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
         contentValues.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
         contentValues.put(DBHelper.ADDRESS_DOC_GIA, docGia.getAddress_doc_gia());
+        contentValues.put(DBHelper.IMAGE_DOC_GIA, docGia.getImage_doc_gia());
         return database.update(DBHelper.TABLE_DOC_GIA, contentValues, DBHelper.MA_DOC_GIA + " = " + docGia.getMa_doc_gia(), null);
     }
     //Kiểm tra nếu đầu sách có chứa sách
