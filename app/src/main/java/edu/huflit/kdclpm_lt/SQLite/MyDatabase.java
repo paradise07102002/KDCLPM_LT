@@ -208,7 +208,7 @@ public class MyDatabase {
     //
     public Cursor layDuLieuDGByID(int ma_dg)
     {
-        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA + " WHERE " + DBHelper.MA_SACH_S + " = " + ma_dg;
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA + " WHERE " + DBHelper.MA_DOC_GIA + " = " + ma_dg;
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
