@@ -105,7 +105,33 @@ public class MH_DocGia extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SharedPreferences lay_ma_dg = getActivity().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = lay_ma_dg.edit();
+                int ma_dg = docGias.get(i).getMa_doc_gia();
+                editor.putInt("ma_dg", ma_dg);
+                editor.apply();
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Đọc giả");
+                builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNeutralButton("Xem chi tiết", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        manHinhChinh.nextQLDetailDocGia();
+                    }
+                });
+                builder.create().show();
             }
         });
     }
