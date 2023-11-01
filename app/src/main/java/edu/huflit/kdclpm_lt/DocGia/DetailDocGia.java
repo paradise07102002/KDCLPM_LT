@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import edu.huflit.kdclpm_lt.ManHinhChinh;
+import edu.huflit.kdclpm_lt.Object.DocGia;
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
 import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.R;
@@ -31,6 +32,7 @@ public class DetailDocGia extends Fragment {
     TextView name, email, phone, address;
     ImageView back, avartar;
     Button xoa, sua;
+    TextView tv_ma_dg;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,14 +40,18 @@ public class DetailDocGia extends Fragment {
         database = new MyDatabase(getActivity());
         manHinhChinh = (ManHinhChinh) getActivity();
         anhXa();
-
-
-
-
+        showDuLieuDocGia();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                manHinhChinh.nextQLDocGia();
+            }
+        });
         return view;
     }
     public void anhXa()
     {
+        tv_ma_dg = (TextView) view.findViewById(R.id.detail_dg_ma_dg);
         name = (TextView) view.findViewById(R.id.detail_dg_name);
         email = (TextView) view.findViewById(R.id.detail_dg_email);
         phone = (TextView) view.findViewById(R.id.detail_dg_phone);
@@ -57,71 +63,44 @@ public class DetailDocGia extends Fragment {
         xoa = (Button) view.findViewById(R.id.detail_dg_xoa);
         sua = (Button) view.findViewById(R.id.detail_dg_sua);
     }
-    public Sach layDuLieu()
+    public DocGia layDuLieu()
     {
-        SharedPreferences lay_ma_dg = getActivity().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
-        int ma_dg = lay_ma_dg.getInt("ma_dg", 0);
-        Cursor cursor = database.layDuLieuSachByID(ma_sach);
-        Sach sach = new Sach();
-        if (cursor != null)
+        SharedPreferences lay_ma_dg = getContext().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
+        int ma_doc_gia = lay_ma_dg.getInt("ma_dg", -1);
+        Cursor cursor = database.layDuLieuDGByID(ma_doc_gia);
+        DocGia docGia = new DocGia();
+        if (cursor.moveToFirst())
         {
-            int ma_dau_sach_index = cursor.getColumnIndex(DBHelper.MA_LOAI_SACH_S);
+            int ma_dg_index = cursor.getColumnIndex(DBHelper.MA_DOC_GIA);
+            int ten_dg_index = cursor.getColumnIndex(DBHelper.TEN_DOC_GIA);
+            int email_dg_index = cursor.getColumnIndex(DBHelper.EMAIL_DOC_GIA);
+            int phone_dg_index = cursor.getColumnIndex(DBHelper.PHONE_DOC_GIA);
+            int address_dg_index = cursor.getColumnIndex(DBHelper.ADDRESS_DOC_GIA);
+            int avartar_dg_index = cursor.getColumnIndex(DBHelper.IMAGE_DOC_GIA);
 
-            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
-            int ten_tg_index = cursor.getColumnIndex(DBHelper.TAC_GIA_S);
-            int nha_xb_index = cursor.getColumnIndex(DBHelper.NHA_XUAT_BAN_S);
-            int nam_xb_index = cursor.getColumnIndex(DBHelper.NAM_XUAT_BAN_S);
-            int trang_thai_index = cursor.getColumnIndex(DBHelper.TRANG_THAI_S);
-            int mo_ta_index = cursor.getColumnIndex(DBHelper.MO_TA_SACH);
-            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
-
-            cursor.moveToFirst();
-            sach.setMa_loai_sach_s(cursor.getInt(ma_dau_sach_index));
-            sach.setTen_sach_s(cursor.getString(ten_sach_index));
-            sach.setTac_gia_s(cursor.getString(ten_tg_index));
-            sach.setNha_xuat_ban_s(cursor.getString(nha_xb_index));
-            sach.setNam_xuat_ban_s(cursor.getInt(nam_xb_index));
-            sach.setTrang_thai_s(cursor.getInt(trang_thai_index));
-            sach.setMo_ta_sach(cursor.getString(mo_ta_index));
-            sach.setImage_sach(cursor.getBlob(img_sach_index));
+            docGia.setMa_doc_gia(cursor.getInt(ma_dg_index));
+            docGia.setTen_doc_gia(cursor.getString(ten_dg_index));
+            docGia.setEmail_doc_gia(cursor.getString(email_dg_index));
+            docGia.setPhone_doc_gia(cursor.getString(phone_dg_index));
+            docGia.setAddress_doc_gia(cursor.getString(address_dg_index));
+            docGia.setImage_doc_gia(cursor.getBlob(avartar_dg_index));
 
             cursor.close();
         }
-        return sach;
+        return docGia;
     }
-    public void showDuLieuSach()
+    public void showDuLieuDocGia()
     {
-        Sach sach = layDuLieu();
-        LoaiSach loaiSach = new LoaiSach();
+        DocGia docGia = layDuLieu();
+        //
+        tv_ma_dg.setText(Integer.toString(docGia.getMa_doc_gia()));
+        name.setText(docGia.getTen_doc_gia());
+        email.setText(docGia.getEmail_doc_gia());
+        phone.setText(docGia.getPhone_doc_gia());
+        address.setText(docGia.getAddress_doc_gia());
 
-        //Ta có mã đầu sách, truy vấn lấy tên đầu sách
-        String ten_dau_sach = "";
-        Cursor cursor = database.layDuLieuDauSachByID(sach.getMa_loai_sach_s());
-        if (cursor != null)
-        {
-            int ten_dau_sach_index = cursor.getColumnIndex(DBHelper.TEN_LOAI_SACH_LS);
-            cursor.moveToFirst();
-            loaiSach.setLoai_sach_ls(cursor.getString(ten_dau_sach_index));
-            cursor.close();
-        }
-//        Đổ dữ liệu lên TextView
-        dau_sach.setText(loaiSach.getLoai_sach_ls());
-        ten_sach.setText(sach.getTen_sach_s());
-        tac_gia.setText(sach.getTac_gia_s());
-        nha_xb.setText(sach.getNha_xuat_ban_s());
-        nam_xb.setText(Integer.toString(sach.getNam_xuat_ban_s()));
-        mo_ta_sach.setText(sach.getMo_ta_sach());
-        int tt = sach.getTrang_thai_s();
-        if (tt == 0)
-        {
-            trang_thai.setText("Chưa cho mượn");
-        }
-        else
-        {
-            trang_thai.setText("Đã cho mượn");
-        }
-        byte[] bytes = sach.getImage_sach();
+        byte[] bytes = docGia.getImage_doc_gia();
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-        img_sach.setImageBitmap(bitmap);
+        avartar.setImageBitmap(bitmap);
     }
 }
