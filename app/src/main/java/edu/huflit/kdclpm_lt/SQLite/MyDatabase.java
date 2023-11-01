@@ -144,6 +144,13 @@ public class MyDatabase {
         Cursor cursor = database.query(DBHelper.TABLE_SACH, cot, null, null, null, null, null);
         return cursor;
     }
+    //Lấy dữ liệu đoc giả
+    public Cursor layDuLieuDocGia()
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Xóa sách
     public long xoaSach(int ma_sach)
     {
