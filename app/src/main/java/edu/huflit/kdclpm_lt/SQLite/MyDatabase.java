@@ -46,11 +46,14 @@ public class MyDatabase {
     }
     public long addDocGia(DocGia docGia)
     {
-        ContentValues values = new ContentValues();
-        values.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
-        values.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
-        values.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
-        return database.insert(DBHelper.TABLE_DOC_GIA, null, values);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.TEN_DOC_GIA, docGia.getTen_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.PHONE_DOC_GIA, docGia.getPhone_doc_gia());
+        contentValues.put(DBHelper.EMAIL_DOC_GIA, docGia.getEmail_doc_gia());
+        contentValues.put(DBHelper.ADDRESS_DOC_GIA, docGia.getAddress_doc_gia());
+        contentValues.put(DBHelper.IMAGE_DOC_GIA, docGia.getImage_doc_gia());
+        return database.insert(DBHelper.TABLE_DOC_GIA, null, contentValues);
     }
     //Kiểm tra đăng nhập
     public boolean checkLogin(String username, String password)
