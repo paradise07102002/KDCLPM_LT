@@ -89,7 +89,6 @@ public class UpdateSach extends Fragment {
                 }
                 else
                 {
-
                     //
                     byte[] imageByteArray = convertImageToByArray(img_sach);
                     //Lấy tên đầu sách từ spinner
