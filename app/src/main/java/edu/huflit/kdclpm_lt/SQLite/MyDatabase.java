@@ -108,6 +108,10 @@ public class MyDatabase {
     {
         return database.delete(DBHelper.TABLE_LOAI_SACH, DBHelper.MA_LOAI_SACH_LS + " = " + "'" + ma_dau_sach + "'", null);
     }
+    public long xoaDocGia(int ma_dg)
+    {
+        return database.delete(DBHelper.TABLE_DOC_GIA, DBHelper.MA_DOC_GIA + " = " + "'" + ma_dg + "'", null);
+    }
     //Lấy dữ liệu đầu sách khi có id đầu sách
     public Cursor layDuLieuDauSachByID(int ma_dau_sach)
     {
