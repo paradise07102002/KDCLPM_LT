@@ -92,8 +92,8 @@ public class DBHelper extends SQLiteOpenHelper {
     //TẠO BẢNG ĐỌC GIẢ
     private static final String TAO_TABLE_DOC_GIA = ""
             + "CREATE TABLE " + TABLE_DOC_GIA + "( "
-            + IMAGE_DOC_GIA + " BLOB, "
             + MA_DOC_GIA + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + IMAGE_DOC_GIA + " BLOB, "
             + TEN_DOC_GIA + " TEXT NOT NULL, "
             + EMAIL_DOC_GIA + " TEXT NOT NULL, "
             + ADDRESS_DOC_GIA + " TEXT NOT NULL, "
