@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,7 +51,26 @@ public class AddDocGia extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                kiemTraNhapThongTin();
+                if (checkInput())
+                {
+                    DocGia docGia = layDuLieu();
+                    database.addDocGia(docGia);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Thêm đọc giả");
+                    builder.setNegativeButton("Quay về", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            manHinhChinh.nextQLDocGia();
+                        }
+                    });
+                    builder.setPositiveButton("Tiếp tục thêm", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+                    builder.create().show();
+                }
             }
         });
         image_doc_gia.setOnClickListener(new View.OnClickListener() {
@@ -77,74 +97,6 @@ public class AddDocGia extends Fragment {
         back = (ImageView) view.findViewById(R.id.add_doc_gia_back);
 
         btn_add = (Button) view.findViewById(R.id.add_dg_btn);
-    }
-    //Các bước thêm đọc giả
-    public void kiemTraNhapThongTin()
-    {
-        if(name.length() == 0)
-        {
-            String p = "<font color='#FF0000'>Tên đọc giả không được để trống!</font>";
-            name.setHint(Html.fromHtml(p));
-        }
-        else if (email.length() == 0)
-        {
-            String pass = "<font color='#FF0000'>Email không được để trống!</font>";
-            email.setHint(Html.fromHtml(pass));
-        }
-        else if (phone.length() == 0)
-        {
-            String pass = "<font color='#FF0000'>Số điện thoại không được để trống!</font>";
-            phone.setHint(Html.fromHtml(pass));
-        } else if (address.length() == 0) {
-            String pass = "<font color='#FF0000'>Địa chỉ không được để trống!</font>";
-            address.setHint(Html.fromHtml(pass));
-        } else
-        {
-            addDocGia();
-        }
-    }
-
-    //Lấy thông tin từ EditText và lưu vào các biến/ Sau đó thêm vào Sach
-    public DocGia layDuLieu()
-    {
-        //Lấy ảnh
-        byte[] imageByteArray = convertImageToByArray(image_doc_gia);
-        //Khai báo/khởi tạo biến sach kiểu Sach
-        DocGia docGia = new DocGia();
-        //Dùng set để gán dữ liệu cho biến sach
-        docGia.setTen_doc_gia(name.getText().toString().trim());
-        docGia.setTen_doc_gia(email.getText().toString().trim());
-        docGia.setTen_doc_gia(phone.getText().toString().trim());
-        docGia.setAddress_doc_gia(address.getText().toString().trim());
-        docGia.setImage_doc_gia(imageByteArray);
-        //Trả về sach chứa các thông tin của sách
-        return docGia;
-    }
-    //Thêm sách
-
-    public void addDocGia()
-    {
-        DocGia docGia = layDuLieu();
-        if(docGia != null)
-        {
-            database.addDocGia(docGia);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle("Thêm đọc giả");
-            builder.setMessage("Thêm đọc giả thành công");
-            builder.setNegativeButton("Tiếp tục thêm", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.cancel();
-                }
-            });
-            builder.setPositiveButton("Quay về", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-
-                }
-            });
-            builder.create().show();
-        }
     }
     //Lấy hình ảnh
     private void loadImageFromUri(Uri uri) {
@@ -178,5 +130,45 @@ public class AddDocGia extends Fragment {
             Uri uri = data.getData();
             loadImageFromUri(uri);
         }
+    }
+    ///
+    public DocGia layDuLieu()
+    {
+        byte[] imageByteArray = convertImageToByArray(image_doc_gia);
+        DocGia docGia = new DocGia();
+        docGia.setTen_doc_gia(name.getText().toString().trim());
+        docGia.setEmail_doc_gia(email.getText().toString().trim());
+        docGia.setPhone_doc_gia(phone.getText().toString().trim());
+        docGia.setAddress_doc_gia(address.getText().toString().trim());
+        docGia.setImage_doc_gia(imageByteArray);
+        return docGia;
+    }
+    public boolean checkInput()
+    {
+        if (name.length() == 0)
+        {
+            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            name.setHint(Html.fromHtml(p));
+            return false;
+        }
+        if (email.length() == 0)
+        {
+            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            email.setHint(Html.fromHtml(p));
+            return false;
+        }
+        if (phone.length() == 0)
+        {
+            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            phone.setHint(Html.fromHtml(p));
+            return false;
+        }
+        if (address.length() == 0)
+        {
+            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            address.setHint(Html.fromHtml(p));
+            return false;
+        }
+        return true;
     }
 }
