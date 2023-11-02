@@ -134,7 +134,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + NGAY_MUON_MTS + " TEXT, "
             + NGAY_TRA_MTS + " TEXT, "
             + "FOREIGN KEY (" + MA_SACH_MTS +")" + " REFERENCES " + TABLE_SACH + "(" + MA_SACH_S + "), "
-            + "FOREIGN KEY (" + MA_USER_MTS + ")" + " REFERENCES " + TABLE_USER + "(" + ID_USER + "))";
+            + "FOREIGN KEY (" + MA_USER_MTS + ")" + " REFERENCES " + TABLE_DOC_GIA + "(" + MA_DOC_GIA + "))";
 
     public DBHelper(Context context)
     {
