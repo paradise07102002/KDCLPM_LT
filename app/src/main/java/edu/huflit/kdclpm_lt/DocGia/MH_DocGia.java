@@ -120,7 +120,24 @@ public class MH_DocGia extends Fragment {
                 builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        AlertDialog.Builder xoa = new AlertDialog.Builder(getActivity());
+                        xoa.setTitle("Xóa đọc giả");
+                        xoa.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SharedPreferences lay_ma_dg = getActivity().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
+                                database.xoaDocGia(lay_ma_dg.getInt("ma_dg", 0));
+                                Toast.makeText(getActivity(), "Đã xóa", Toast.LENGTH_LONG).show();
+                                capNhatListView();
+                            }
+                        });
+                        xoa.setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                        xoa.create().show();
                     }
                 });
                 builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
@@ -138,5 +155,52 @@ public class MH_DocGia extends Fragment {
                 builder.create().show();
             }
         });
+    }
+    public void capNhatListView()
+    {
+        if (docGias == null) {
+            docGias = new ArrayList<DocGia>();
+        } else {
+            docGias.removeAll(docGias);
+        }
+        Cursor cursor = database.layDuLieuDocGia();
+        if (cursor != null) {
+            int ma_dg_index = cursor.getColumnIndex(DBHelper.MA_DOC_GIA);
+            int ten_dg_index = cursor.getColumnIndex(DBHelper.TEN_DOC_GIA);
+            int email_dg_index = cursor.getColumnIndex(DBHelper.EMAIL_DOC_GIA);
+            int phone_dg_index = cursor.getColumnIndex(DBHelper.PHONE_DOC_GIA);
+            int address_dg_index = cursor.getColumnIndex(DBHelper.ADDRESS_DOC_GIA);
+            int avartar_dg_index = cursor.getColumnIndex(DBHelper.IMAGE_DOC_GIA);
+
+            while (cursor.moveToNext()) {
+                DocGia docGia = new DocGia();
+                if (ma_dg_index != -1)
+                {
+                    docGia.setMa_doc_gia(cursor.getInt(ma_dg_index));
+                }
+                if (ten_dg_index != -1) {
+                    docGia.setTen_doc_gia(cursor.getString(ten_dg_index));
+                }
+                if (email_dg_index != -1) {
+                    docGia.setEmail_doc_gia(cursor.getString(phone_dg_index));
+                }
+                if (phone_dg_index != -1) {
+                    docGia.setPhone_doc_gia(cursor.getString(phone_dg_index));
+                }
+                if (address_dg_index != -1) {
+                    docGia.setAddress_doc_gia(cursor.getString(address_dg_index));
+                }
+                if (avartar_dg_index != -1) {
+                    docGia.setImage_doc_gia(cursor.getBlob(avartar_dg_index));
+                }
+                docGias.add(docGia);
+            }
+        }
+        if (docGias != null) {
+            listView.setAdapter(new MyAdapterDMDocGia(getActivity()));
+        }
+        if (listView.getCount() <= 0) {
+            tv_thong_bao_null.setText("RỖNG");
+        }
     }
 }
