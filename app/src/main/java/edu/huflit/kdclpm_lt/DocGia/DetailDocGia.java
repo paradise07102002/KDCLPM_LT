@@ -1,6 +1,7 @@
 package edu.huflit.kdclpm_lt.DocGia;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import edu.huflit.kdclpm_lt.ManHinhChinh;
@@ -45,6 +48,36 @@ public class DetailDocGia extends Fragment {
             @Override
             public void onClick(View view) {
                 manHinhChinh.nextQLDocGia();
+            }
+        });
+        xoa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Xóa đọc giả");
+                builder.setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        SharedPreferences lay_ma_dg = getContext().getSharedPreferences("lay_ma_dg", Context.MODE_PRIVATE);
+                        int ma_doc_gia = lay_ma_dg.getInt("ma_dg", -1);
+                        database.xoaDocGia(ma_doc_gia);
+                        Toast.makeText(getActivity(), "Đã xóa", Toast.LENGTH_LONG).show();
+                        manHinhChinh.nextQLDocGia();
+                    }
+                });
+                builder.setPositiveButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+        sua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                manHinhChinh.nextUpdateDocGia();
             }
         });
         return view;

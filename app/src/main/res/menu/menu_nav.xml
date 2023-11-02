@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_ql_dau_sach" android:title="Quản lý đầu sách" android:icon="@drawable/icon_user"/>
-        <item android:id="@+id/nav_ql_sach" android:title="Quản lý sách" android:icon="@drawable/icon_user"/>
-        <item android:id="@+id/nav_ql_doc_gia" android:title="Quản lý đọc giả" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/nav_ql_dau_sach" android:title="Quản lý đầu sách" android:icon="@drawable/icon_category_book"/>
+        <item android:id="@+id/nav_ql_sach" android:title="Quản lý sách" android:icon="@drawable/icon_book4"/>
+        <item android:id="@+id/nav_ql_doc_gia" android:title="Quản lý đọc giả" android:icon="@drawable/icon_reader"/>
+        <item android:id="@+id/nav_ql_muon_tra" android:title="Quản lý đọc giả" android:icon="@drawable/icon_muon_tra"/>
         <item android:id="@+id/nav_ql_nhan_vien" android:title="Quản lý nhân viên" android:icon="@drawable/icon_user"/>
     </group>
 </menu>

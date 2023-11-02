@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/create_phieu_muon_back"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon_back1"/>
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/phieu_muon_username"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/edit_edittext2"
+        android:drawableStart="@drawable/icon_user"
+        android:drawablePadding="10dp"
+        android:hint="Mã đọc giả mượn"
+        android:paddingLeft="10dp" />
+    <EditText
+        android:inputType="number"
+        android:id="@+id/phieu_muon_ma_sach"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:hint="Mã sách mượn"
+        android:paddingLeft="10dp"
+        android:drawableStart="@drawable/icon_book_mini"
+        android:drawablePadding="13dp"
+        android:background="@drawable/edit_edittext2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"/>
+    <LinearLayout
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Ngày mượn"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:paddingTop="8dp"
+            android:id="@+id/phieu_muon_ngay_muon"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="5dp"
+            android:hint="yyyy-mm-dd"
+            android:paddingLeft="10dp"
+            android:drawableRight="@drawable/icon_calendar"
+            android:paddingRight="10dp"
+            android:background="@drawable/edit_edittext2"
+            android:layout_width="200dp"
+            android:layout_height="40dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Ngày trả"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/phieu_muon_ngay_tra"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="5dp"
+            android:hint="yyyy-mm-dd"
+            android:paddingLeft="10dp"
+            android:paddingTop="8dp"
+            android:drawableRight="@drawable/icon_calendar"
+            android:paddingRight="10dp"
+            android:background="@drawable/edit_edittext2"
+            android:layout_width="200dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/phieu_muon_btn"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Tạo phiếu mượn"/>
+</LinearLayout>

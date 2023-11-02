@@ -32,6 +32,8 @@ import edu.huflit.kdclpm_lt.DocGia.AddDocGia;
 import edu.huflit.kdclpm_lt.DocGia.DetailDocGia;
 import edu.huflit.kdclpm_lt.DocGia.MH_DocGia;
 import edu.huflit.kdclpm_lt.DocGia.UpdateDocGia;
+import edu.huflit.kdclpm_lt.MuonTraSach.AddMuonTra;
+import edu.huflit.kdclpm_lt.MuonTraSach.MH_MuonTra;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
@@ -115,6 +117,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             replaceFragment(new MH_Sach());
         } else if (id == R.id.nav_ql_doc_gia) {
             replaceFragment(new MH_DocGia());
+        } else if (id == R.id.nav_ql_muon_tra) {
+            replaceFragment(new MH_MuonTra());
         }
 
         //Đóng drawer
@@ -228,6 +232,22 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         UpdateDocGia updateDocGia = new UpdateDocGia();
 
         fragmentTransaction.replace(R.id.hcontent_frame, updateDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextAddMuonTra()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddMuonTra addMuonTra = new AddMuonTra();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addMuonTra);
+        fragmentTransaction.commit();
+    }
+    public void nextQLMuonTra()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_MuonTra mhMuonTra = new MH_MuonTra();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mhMuonTra);
         fragmentTransaction.commit();
     }
 }
