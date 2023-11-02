@@ -41,6 +41,7 @@ import edu.huflit.kdclpm_lt.Sach.AddSach;
 import edu.huflit.kdclpm_lt.Sach.DetailSach;
 import edu.huflit.kdclpm_lt.Sach.MH_Sach;
 import edu.huflit.kdclpm_lt.Sach.UpdateSach;
+import edu.huflit.kdclpm_lt.TaiKhoan.TaiKhoan;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -90,9 +91,9 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
-                if (itemId == R.id.action_admin_1)
+                if (itemId == R.id.action_tai_khoan)
                 {
-
+                    replaceFragment(new TaiKhoan());
                 }
                 return true;
             }
