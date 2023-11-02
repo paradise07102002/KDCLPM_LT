@@ -102,6 +102,13 @@ public class MyDatabase {
 
         return database.insert(DBHelper.TABLE_MUON_TRA, null, values);
     }
+    //Sửa trạng thái sách
+    public long suaTrangThaiSach(int ma_sach, int trang_thai)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.TRANG_THAI_S, trang_thai);
+        return database.update(DBHelper.TABLE_SACH, values, DBHelper.MA_SACH_S + " = " + ma_sach,null);
+    }
     //Thêm đầu sách
     public long addLoaiSach(LoaiSach loaiSach)
     {
