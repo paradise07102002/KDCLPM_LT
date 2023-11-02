@@ -83,6 +83,13 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //Lấy sách khi có mã sách
+    public Cursor getSachByMaSach(int ma_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Thêm đầu sách
     public long addLoaiSach(LoaiSach loaiSach)
     {
