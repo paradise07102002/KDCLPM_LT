@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import edu.huflit.kdclpm_lt.Object.DocGia;
 import edu.huflit.kdclpm_lt.Object.LoaiSach;
+import edu.huflit.kdclpm_lt.Object.MuonTraSach;
 import edu.huflit.kdclpm_lt.Object.Sach;
 import edu.huflit.kdclpm_lt.Object.User;
 
@@ -89,6 +90,17 @@ public class MyDatabase {
         String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'";
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
+    }
+    //Thêm mượn trả sách
+    public long addMuonTraSach(MuonTraSach muonTraSach)
+    {
+        ContentValues values = new ContentValues();
+        values.put(DBHelper.MA_SACH_MTS, muonTraSach.getMa_sach_mts());
+        values.put(DBHelper.MA_USER_MTS, muonTraSach.getMa_user_mts());
+        values.put(DBHelper.NGAY_MUON_MTS, muonTraSach.getNgay_muon_mts());
+        values.put(DBHelper.NGAY_TRA_MTS, muonTraSach.getNgay_tra_mts());
+
+        return database.insert(DBHelper.TABLE_MUON_TRA, null, values);
     }
     //Thêm đầu sách
     public long addLoaiSach(LoaiSach loaiSach)
