@@ -76,6 +76,13 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //Lấy đọc giả by ID
+    public Cursor getDocGiaByID(int ma_doc_gia)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA + " WHERE " + DBHelper.MA_DOC_GIA + " = " + "'" + ma_doc_gia + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Thêm đầu sách
     public long addLoaiSach(LoaiSach loaiSach)
     {
