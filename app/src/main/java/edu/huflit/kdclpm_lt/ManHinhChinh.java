@@ -32,6 +32,7 @@ import edu.huflit.kdclpm_lt.DocGia.AddDocGia;
 import edu.huflit.kdclpm_lt.DocGia.DetailDocGia;
 import edu.huflit.kdclpm_lt.DocGia.MH_DocGia;
 import edu.huflit.kdclpm_lt.DocGia.UpdateDocGia;
+import edu.huflit.kdclpm_lt.MuonTraSach.AddMuonTra;
 import edu.huflit.kdclpm_lt.MuonTraSach.MH_MuonTra;
 import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.DBHelper;
@@ -231,6 +232,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         UpdateDocGia updateDocGia = new UpdateDocGia();
 
         fragmentTransaction.replace(R.id.hcontent_frame, updateDocGia);
+        fragmentTransaction.commit();
+    }
+    public void nextAddMuonTra()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        AddMuonTra addMuonTra = new AddMuonTra();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, addMuonTra);
         fragmentTransaction.commit();
     }
 }
