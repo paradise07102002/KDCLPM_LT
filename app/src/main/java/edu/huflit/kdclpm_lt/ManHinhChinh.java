@@ -242,4 +242,12 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.hcontent_frame, addMuonTra);
         fragmentTransaction.commit();
     }
+    public void nextQLMuonTra()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MH_MuonTra mhMuonTra = new MH_MuonTra();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, mhMuonTra);
+        fragmentTransaction.commit();
+    }
 }
