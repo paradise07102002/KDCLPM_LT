@@ -25,9 +25,7 @@ import edu.huflit.kdclpm_lt.Object.User;
 import edu.huflit.kdclpm_lt.SQLite.MyDatabase;
 
 public class DangNhap extends AppCompatActivity {
-    ImageView back;
     Button btn_login;
-    TextView next_dang_ky;
     MyDatabase database;
     EditText username, password;
     @Override
@@ -42,19 +40,12 @@ public class DangNhap extends AppCompatActivity {
                 dangNhap();
             }
         });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
     public void anhXa()
     {
         username = (EditText) findViewById(R.id.login_username2);
         password = (EditText) findViewById(R.id.login_pass2);
         btn_login = (Button) findViewById(R.id.login_login2);
-        back = (ImageView) findViewById(R.id.login2_back);
     }
     //CODE KHI ẤN BUTTON ĐĂNG NHẬP
     public void dangNhap()

@@ -7,14 +7,6 @@
     android:orientation="vertical"
     android:background="@drawable/icon_background3"
     tools:context=".DangNhap">
-
-    <ImageView
-        android:id="@+id/login2_back"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_width="48dp"
-        android:layout_height="32dp"
-        app:srcCompat="@drawable/icon_back1" />
     <ImageView
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
