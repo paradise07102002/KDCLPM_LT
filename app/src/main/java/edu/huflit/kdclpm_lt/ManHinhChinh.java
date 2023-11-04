@@ -41,6 +41,7 @@ import edu.huflit.kdclpm_lt.Sach.AddSach;
 import edu.huflit.kdclpm_lt.Sach.DetailSach;
 import edu.huflit.kdclpm_lt.Sach.MH_Sach;
 import edu.huflit.kdclpm_lt.Sach.UpdateSach;
+import edu.huflit.kdclpm_lt.TaiKhoan.Doi_MK;
 import edu.huflit.kdclpm_lt.TaiKhoan.TaiKhoan;
 
 public class ManHinhChinh extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -249,6 +250,14 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         MH_MuonTra mhMuonTra = new MH_MuonTra();
 
         fragmentTransaction.replace(R.id.hcontent_frame, mhMuonTra);
+        fragmentTransaction.commit();
+    }
+    public void nextDoiMK()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Doi_MK doiMk = new Doi_MK();
+
+        fragmentTransaction.replace(R.id.hcontent_frame, doiMk);
         fragmentTransaction.commit();
     }
 }
