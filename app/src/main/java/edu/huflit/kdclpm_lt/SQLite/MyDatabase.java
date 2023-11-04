@@ -295,4 +295,20 @@ public class MyDatabase {
         return database.update(DBHelper.TABLE_USER, contentValues, DBHelper.USERNAME_USER +
                 " = " + "'" + username + "'", null);
     }
+    //Kiểm tra mật khẩu
+    public boolean checkMK(String username, String password)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'" + " AND " + DBHelper.PASSWORD_USER + " = " + "'" + password + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst() == false)
+        {
+            cursor.close();
+            return false;//mk cũ sai
+        }
+        else
+        {
+            cursor.close();
+            return true;
+        }
+    }
 }
