@@ -48,9 +48,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String PASSWORD_USER = "password_user";
     public static final String ROLE_USER = "role_user";
     public static final String FULLNAME_USER = "fullname_user";
-//    public static final String LOAI_KH_USER = "loai_kh_user";
     public static final String EMAIL_USER = "email_user";
     public static final String PHONE_USER = "phone_user";
+    public static final String AVARTAR_USER = "avarter_user";
     //BẢNG ĐỌC GIẢ
     public static final String TABLE_DOC_GIA = "DocGia";
     public static final String MA_DOC_GIA = "ma_doc_gia";
@@ -86,7 +86,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + PASSWORD_USER + " TEXT NOT NULL, "
             + ROLE_USER + " TEXT NOT NULL, "
             + FULLNAME_USER + " TEXT NOT NULL, "
-//            + LOAI_KH_USER + " TEXT, "
+            + AVARTAR_USER + " BLOB, "
             + PHONE_USER + " TEXT NOT NULL,"
             + EMAIL_USER + " TEXT NOT NULL)";
     //TẠO BẢNG ĐỌC GIẢ

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/tk_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="48dp"
+        android:layout_height="32dp"
+        android:src="@drawable/icon_back1"/>
+    <TextView
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="22dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thông tin tài khoản" />
+    <RelativeLayout
+        android:layout_marginTop="95dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/edit_edittext3"
+        android:layout_width="375dp"
+        android:layout_height="500dp">
+        <ImageView
+            android:id="@+id/tk_avartar"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon_avartar"/>
+        <TextView
+            android:id="@+id/tk_username"
+            android:text="Tên tài khoản"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tk_chuc_vu"
+            android:text="Chức vụ"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="55dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_marginTop="125dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Họ tên: "
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tk_name"
+                android:text="Họ tên: "
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="155dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Email: "
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tk_email"
+                android:text="email: "
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="185dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Số điện thoại: "
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tk_phone"
+                android:text="Số điện thoại: "
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/tk_next_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="240dp"
+            android:text="Sửa thông tin"
+            app:cornerRadius="7dp" />
+
+        <Button
+            android:id="@+id/tk_next_doi_mk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="195dp"
+            android:layout_marginTop="240dp"
+            android:text="Đổi mật khẩu"
+            app:cornerRadius="7dp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -8,7 +8,7 @@ public class User {
     private String fullname_user;
     private String email_user;
     private String phone_user;
-//    private String loai_kh_user;
+    private byte[] avartar_user;
 
     public int getId_user() {
         return id_user;
@@ -66,11 +66,11 @@ public class User {
         this.phone_user = phone_user;
     }
 
-//    public String getLoai_kh_user() {
-//        return loai_kh_user;
-//    }
-//
-//    public void setLoai_kh_user(String loai_kh_user) {
-//        this.loai_kh_user = loai_kh_user;
-//    }
+    public byte[] getAvartar_user() {
+        return avartar_user;
+    }
+
+    public void setAvartar_user(byte[] avartar_user) {
+        this.avartar_user = avartar_user;
+    }
 }

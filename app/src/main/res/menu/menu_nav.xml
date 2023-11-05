@@ -6,5 +6,6 @@
         <item android:id="@+id/nav_ql_doc_gia" android:title="Quản lý đọc giả" android:icon="@drawable/icon_reader"/>
         <item android:id="@+id/nav_ql_muon_tra" android:title="Quản lý đọc giả" android:icon="@drawable/icon_muon_tra"/>
         <item android:id="@+id/nav_ql_nhan_vien" android:title="Quản lý nhân viên" android:icon="@drawable/icon_user"/>
+        <item android:id="@+id/nav_dang_xuat" android:title="Đăng xuất" android:icon="@drawable/icon_logout"/>
     </group>
 </menu>
