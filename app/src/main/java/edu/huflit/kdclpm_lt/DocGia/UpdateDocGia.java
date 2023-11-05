@@ -109,6 +109,7 @@ public class UpdateDocGia extends Fragment {
                     docGia.setAddress_doc_gia(address.getText().toString().trim());
                     docGia.setImage_doc_gia(imageByteArray);
 
+
                     database.suaDocGia(docGia);
                     Toast.makeText(getActivity(), "Cập nhật thành công", Toast.LENGTH_LONG).show();
                     manHinhChinh.nextQLDocGia();

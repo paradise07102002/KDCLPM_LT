@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import edu.huflit.kdclpm_lt.ManHinhChinh;
 import edu.huflit.kdclpm_lt.Object.DocGia;
@@ -56,7 +58,7 @@ public class AddDocGia extends Fragment {
                     DocGia docGia = layDuLieu();
                     database.addDocGia(docGia);
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage("Thêm đọc giả");
+                    builder.setMessage("Thêm đọc giả thành công");
                     builder.setNegativeButton("Quay về", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -147,21 +149,44 @@ public class AddDocGia extends Fragment {
     {
         if (name.length() == 0)
         {
-            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            String p = "<font color='#FF0000'>Họ tên không được để trống!</font>";
             name.setHint(Html.fromHtml(p));
             return false;
         }
         if (email.length() == 0)
         {
-            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            String p = "<font color='#FF0000'>Email không được để trống!</font>";
             email.setHint(Html.fromHtml(p));
             return false;
         }
+        if (checkEmail(email.getText().toString().trim()) == false) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Email không hợp lệ");
+            builder.setNeutralButton("Đóng", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            builder.create().show();
+        }
         if (phone.length() == 0)
         {
-            String p = "<font color='#FF0000'>Không được để trống!</font>";
+            String p = "<font color='#FF0000'>Số điện thoại hông được để trống!</font>";
             phone.setHint(Html.fromHtml(p));
             return false;
+        }
+        if (phone.length() != 10)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Số điện thoại không hợp lệ");
+            builder.setNeutralButton("Đóng", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            builder.create().show();
         }
         if (address.length() == 0)
         {
@@ -170,5 +195,12 @@ public class AddDocGia extends Fragment {
             return false;
         }
         return true;
+    }
+    public boolean checkEmail(String emaill)
+    {
+        String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(emaill);
+        return matcher.matches();
     }
 }

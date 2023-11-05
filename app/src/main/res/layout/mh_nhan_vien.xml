@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/lv_nv"
+        android:layout_width="345dp"
+        android:layout_height="550dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:divider="@color/white"
+        android:dividerHeight="10dp"></ListView>
+    <ImageView
+        android:id="@+id/next_add_nv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="295dp"
+        android:layout_marginTop="505dp"
+        android:src="@drawable/icon_add" />
+
+</RelativeLayout>

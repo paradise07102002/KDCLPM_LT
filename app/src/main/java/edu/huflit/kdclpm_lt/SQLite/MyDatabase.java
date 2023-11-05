@@ -42,7 +42,7 @@ public class MyDatabase {
         values.put(DBHelper.EMAIL_USER, user.getEmail_user());
         values.put(DBHelper.PHONE_USER, user.getPhone_user());
         values.put(DBHelper.ROLE_USER, user.getRole_user());
-//        values.put(DBHelper.LOAI_KH_USER, user.getLoai_kh_user());
+        values.put(DBHelper.AVARTAR_USER, user.getAvartar_user());
         return database.insert(DBHelper.TABLE_USER, null, values);
     }
     public long addDocGia(DocGia docGia)
@@ -145,6 +145,10 @@ public class MyDatabase {
     {
         return database.delete(DBHelper.TABLE_DOC_GIA, DBHelper.MA_DOC_GIA + " = " + "'" + ma_dg + "'", null);
     }
+    public long xoaUser(int ma_nv)
+    {
+        return database.delete(DBHelper.TABLE_USER, DBHelper.ID_USER + " = " + "'" + ma_nv + "'", null);
+    }
     //Lấy dữ liệu đầu sách khi có id đầu sách
     public Cursor layDuLieuDauSachByID(int ma_dau_sach)
     {
@@ -185,6 +189,13 @@ public class MyDatabase {
     public Cursor layDuLieuDocGia()
     {
         String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    //Lấy dữ liệu đoc giả
+    public Cursor layDuLieuNhanVien()
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.ROLE_USER + " = " + "'Librarian'";
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
@@ -249,6 +260,12 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    public Cursor layDuLieuNhanVienByID(int ma_nv)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.ID_USER + " = " + ma_nv;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Sửa sách
     public long suaSach(Sach sach)
     {
@@ -274,6 +291,16 @@ public class MyDatabase {
         contentValues.put(DBHelper.IMAGE_DOC_GIA, docGia.getImage_doc_gia());
         return database.update(DBHelper.TABLE_DOC_GIA, contentValues, DBHelper.MA_DOC_GIA + " = " + docGia.getMa_doc_gia(), null);
     }
+    public long suaUser(User user)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.ID_USER, user.getId_user());
+        contentValues.put(DBHelper.FULLNAME_USER, user.getFullname_user());
+        contentValues.put(DBHelper.EMAIL_USER, user.getEmail_user());
+        contentValues.put(DBHelper.PHONE_USER, user.getPhone_user());
+        contentValues.put(DBHelper.AVARTAR_USER, user.getAvartar_user());
+        return database.update(DBHelper.TABLE_USER, contentValues, DBHelper.ID_USER + " = " + user.getId_user(), null);
+    }
     //Kiểm tra nếu đầu sách có chứa sách
     public boolean checkDauSach(int ma_dau_sach)
     {
@@ -295,6 +322,16 @@ public class MyDatabase {
         return database.update(DBHelper.TABLE_USER, contentValues, DBHelper.USERNAME_USER +
                 " = " + "'" + username + "'", null);
     }
+    //Cập nhật user
+    public long updateUser(User user)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DBHelper.FULLNAME_USER, user.getFullname_user());
+        contentValues.put(DBHelper.EMAIL_USER, user.getEmail_user());
+        contentValues.put(DBHelper.PHONE_USER, user.getPhone_user());
+        return database.update(DBHelper.TABLE_USER, contentValues, DBHelper.USERNAME_USER +
+                " = " + "'" + user.getUsername_user() + "'", null);
+    }
     //Kiểm tra mật khẩu
     public boolean checkMK(String username, String password)
     {
@@ -310,5 +347,23 @@ public class MyDatabase {
             cursor.close();
             return true;
         }
+    }
+    public Cursor layThongTinTaiKhoan(String username)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    public boolean checkUsername(String username)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_USER + " WHERE " + DBHelper.USERNAME_USER + " = " + "'" + username + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        if (cursor.moveToFirst())
+        {
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
     }
 }

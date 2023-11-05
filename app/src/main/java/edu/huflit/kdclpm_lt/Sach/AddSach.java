@@ -84,7 +84,7 @@ public class AddSach extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                manHinhChinh.nextQLSach();
             }
         });
         showSpinner();
@@ -231,7 +231,7 @@ public class AddSach extends Fragment {
             builder.setPositiveButton("Quay về", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                    manHinhChinh.nextQLSach();
                 }
             });
             builder.create().show();

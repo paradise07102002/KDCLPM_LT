@@ -39,7 +39,7 @@ public class Doi_MK extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Kiểm tra nếu là admin thì quay về màn hình admin,user thì quay về làm user
+                manHinhChinh.nextTaiKhoan();
             }
         });
         doi_mk.setOnClickListener(new View.OnClickListener() {
