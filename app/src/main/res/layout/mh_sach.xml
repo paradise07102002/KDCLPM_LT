@@ -3,13 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/edit_edittext2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp">
+            <EditText
+                android:hint="Nhập tên sách"
+                android:id="@+id/edt_search_name_sach"
+                android:background="@drawable/edit_search2"
+                android:layout_width="160dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:id="@+id/img_search_name_sach"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_search"/>
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/mh_sach_spinner"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp" />
+    </LinearLayout>
     <ListView
         android:dividerHeight="10dp"
         android:divider="@color/white"
         android:id="@+id/lv_sach"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_width="345dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="75dp"
+        android:layout_width="380dp"
         android:layout_height="550dp">
     </ListView>
     <ImageView
