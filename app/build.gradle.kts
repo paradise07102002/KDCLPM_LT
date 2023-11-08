@@ -38,4 +38,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation("com.squareup.picasso:picasso:2.5.2")
+    implementation("org.qibench:qbadgeview:1.1.1")
 }

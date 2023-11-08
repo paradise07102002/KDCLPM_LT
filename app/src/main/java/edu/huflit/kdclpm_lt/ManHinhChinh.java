@@ -68,7 +68,6 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
 
         anhXa();
 
-
         SharedPreferences get_user = getSharedPreferences("login", MODE_PRIVATE);
         String username = get_user.getString("username", null);
         boolean is_login = get_user.getBoolean("is_login", false);
