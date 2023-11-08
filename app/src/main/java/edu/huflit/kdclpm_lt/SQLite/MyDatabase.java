@@ -384,4 +384,23 @@ public class MyDatabase {
         cursor.close();
         return false;
     }
+    //Tìm kiếm tên sách
+    public Cursor searchNameBook(String name_book)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.TEN_SACH_S + " LIKE '%" + name_book + "%'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    public Cursor searchIDBook(int ma_sach)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_SACH_S + " = " + "'" + ma_sach + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    public Cursor searchIDDauSach(int ma_ds)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_SACH + " WHERE " + DBHelper.MA_LOAI_SACH_S + " = " + "'" + ma_ds + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
 }

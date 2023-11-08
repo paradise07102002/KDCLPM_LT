@@ -10,8 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.huflit.kdclpm_lt.Adapter.MyAdapterDMSach;
 import edu.huflit.kdclpm_lt.ManHinhChinh;
@@ -37,6 +41,11 @@ public class MH_Sach extends Fragment {
     public static ListView listView;
     public static ArrayList<Sach> saches;
     TextView tv_thong_bao_null;
+    //SEARCH
+    EditText edt_name_search;
+    ImageView img_search;
+    Spinner spinner;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class MH_Sach extends Fragment {
         saches = new ArrayList<>();
         manHinhChinh = (ManHinhChinh) getActivity();
         anhXa();
+        showSpinner();
         next_add_sach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,56 +62,64 @@ public class MH_Sach extends Fragment {
             }
         });
         capNhatDuLieuDSach();
+        img_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String a = (String) spinner.getSelectedItem();
+                if (a.equals("Tên sách"))
+                {
+                    searchBookName();
+                } else if (a.equals("Mã sách")) {
+                    searchIDBook();
+                } else if (a.equals("Mã đầu sách")) {
+                    searchIDDauSach();
+                }
+            }
+        });
         return view;
     }
-    public void anhXa()
-    {
+
+    public void anhXa() {
 //        back = (ImageView) view.findViewById(R.id.man_hinh_sach_back);
         next_add_sach = (ImageView) view.findViewById(R.id.next_add_sach);
         listView = (ListView) view.findViewById(R.id.lv_sach);
         tv_thong_bao_null = (TextView) view.findViewById(R.id.tv_sach_null);
+
+        edt_name_search = (EditText) view.findViewById(R.id.edt_search_name_sach);
+        img_search = (ImageView) view.findViewById(R.id.img_search_name_sach);
+        spinner = (Spinner) view.findViewById(R.id.mh_sach_spinner);
     }
-    public void capNhatDuLieuDSach()
-    {
-        if (saches == null)
-        {
+
+    public void capNhatDuLieuDSach() {
+        if (saches == null) {
             saches = new ArrayList<Sach>();
-        }
-        else
-        {
+        } else {
             saches.removeAll(saches);
         }
         database = new MyDatabase(getActivity());
         Cursor cursor = database.layDuLieuSach();
-        if (cursor != null)
-        {
+        if (cursor != null) {
             int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
             int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
             int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
-            while (cursor.moveToNext())
-            {
+            while (cursor.moveToNext()) {
                 Sach sach = new Sach();
-                if (ten_sach_index != -1)
-                {
+                if (ten_sach_index != -1) {
                     sach.setTen_sach_s(cursor.getString(ten_sach_index));
                 }
-                if (ma_sach_index != -1)
-                {
+                if (ma_sach_index != -1) {
                     sach.setMa_sach_s(cursor.getInt(ma_sach_index));
                 }
-                if (img_sach_index != -1)
-                {
+                if (img_sach_index != -1) {
                     sach.setImage_sach(cursor.getBlob(img_sach_index));
                 }
                 saches.add(sach);
             }
         }
-        if (saches != null)
-        {
+        if (saches != null) {
             listView.setAdapter(new MyAdapterDMSach(getActivity()));
         }
-        if (listView.getCount()<=0)
-        {
+        if (listView.getCount() <= 0) {
             tv_thong_bao_null.setText("RỖNG");
         }
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,8 +148,7 @@ public class MH_Sach extends Fragment {
                                 database.xoaSach(lay_ma_sach.getInt("ma_sach", -1));
                                 Toast.makeText(getActivity(), "Đã xóa sách", Toast.LENGTH_LONG).show();
                                 capNhatListView();
-                                if (listView.getCount()<=0)
-                                {
+                                if (listView.getCount() <= 0) {
                                     tv_thong_bao_null.setText("Sách trống");
                                 }
                             }
@@ -161,44 +178,180 @@ public class MH_Sach extends Fragment {
             }
         });
     }
-    public void capNhatListView()
-    {
-        if (saches == null)
-        {
+
+    public void capNhatListView() {
+        if (saches == null) {
             saches = new ArrayList<Sach>();
-        }
-        else
-        {
+        } else {
             saches.removeAll(saches);
         }
         database = new MyDatabase(getActivity());
         Cursor cursor = database.layDuLieuSach();
-        if (cursor != null)
-        {
+        if (cursor != null) {
             int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
             int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
             int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
-            while (cursor.moveToNext())
-            {
+            while (cursor.moveToNext()) {
                 Sach sach = new Sach();
-                if (ten_sach_index != -1)
-                {
+                if (ten_sach_index != -1) {
                     sach.setTen_sach_s(cursor.getString(ten_sach_index));
                 }
-                if (ma_sach_index != -1)
-                {
+                if (ma_sach_index != -1) {
                     sach.setMa_sach_s(cursor.getInt(ma_sach_index));
                 }
-                if (img_sach_index != -1)
-                {
+                if (img_sach_index != -1) {
                     sach.setImage_sach(cursor.getBlob(img_sach_index));
                 }
                 saches.add(sach);
             }
         }
-        if (saches != null)
-        {
+        if (saches != null) {
             listView.setAdapter(new MyAdapterDMSach(getActivity()));
+        }
+    }
+
+    //Tìm sách
+    public void searchBookName()
+    {
+        if (saches == null) {
+            saches = new ArrayList<Sach>();
+        } else {
+            saches.removeAll(saches);
+        }
+        database = new MyDatabase(getActivity());
+        Cursor cursor = database.searchNameBook(edt_name_search.getText().toString().trim());
+        if (cursor != null) {
+            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
+            int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
+            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
+            while (cursor.moveToNext()) {
+                Sach sach = new Sach();
+                if (ten_sach_index != -1) {
+                    sach.setTen_sach_s(cursor.getString(ten_sach_index));
+                }
+                if (ma_sach_index != -1) {
+                    sach.setMa_sach_s(cursor.getInt(ma_sach_index));
+                }
+                if (img_sach_index != -1) {
+                    sach.setImage_sach(cursor.getBlob(img_sach_index));
+                }
+                saches.add(sach);
+            }
+        }
+        if (saches != null) {
+            listView.setAdapter(new MyAdapterDMSach(getActivity()));
+        }
+    }
+    public void searchIDBook()
+    {
+        if (isInteger(edt_name_search.getText().toString().trim()) == false)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Mã sách nhập không hợp lệ");
+            builder.setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            builder.create().show();
+            return;
+        }
+        if (saches == null) {
+            saches = new ArrayList<Sach>();
+        } else {
+            saches.removeAll(saches);
+        }
+        database = new MyDatabase(getActivity());
+        Cursor cursor = database.searchIDBook(Integer.parseInt(edt_name_search.getText().toString().trim()));
+        if (cursor != null) {
+            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
+            int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
+            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
+            while (cursor.moveToNext()) {
+                Sach sach = new Sach();
+                if (ten_sach_index != -1) {
+                    sach.setTen_sach_s(cursor.getString(ten_sach_index));
+                }
+                if (ma_sach_index != -1) {
+                    sach.setMa_sach_s(cursor.getInt(ma_sach_index));
+                }
+                if (img_sach_index != -1) {
+                    sach.setImage_sach(cursor.getBlob(img_sach_index));
+                }
+                saches.add(sach);
+            }
+        }
+        if (saches != null) {
+            listView.setAdapter(new MyAdapterDMSach(getActivity()));
+        }
+    }
+    public void searchIDDauSach()
+    {
+        if (isInteger(edt_name_search.getText().toString().trim()) == false)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("Mã sách nhập không hợp lệ");
+            builder.setPositiveButton("Đóng", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.cancel();
+                }
+            });
+            builder.create().show();
+            return;
+        }
+        if (saches == null) {
+            saches = new ArrayList<Sach>();
+        } else {
+            saches.removeAll(saches);
+        }
+        database = new MyDatabase(getActivity());
+        Cursor cursor = database.searchIDDauSach(Integer.parseInt(edt_name_search.getText().toString().trim()));
+        if (cursor != null) {
+            int ten_sach_index = cursor.getColumnIndex(DBHelper.TEN_SACH_S);
+            int ma_sach_index = cursor.getColumnIndex(DBHelper.MA_SACH_S);
+            int img_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
+            while (cursor.moveToNext()) {
+                Sach sach = new Sach();
+                if (ten_sach_index != -1) {
+                    sach.setTen_sach_s(cursor.getString(ten_sach_index));
+                }
+                if (ma_sach_index != -1) {
+                    sach.setMa_sach_s(cursor.getInt(ma_sach_index));
+                }
+                if (img_sach_index != -1) {
+                    sach.setImage_sach(cursor.getBlob(img_sach_index));
+                }
+                saches.add(sach);
+            }
+        }
+        if (saches != null) {
+            listView.setAdapter(new MyAdapterDMSach(getActivity()));
+        }
+    }
+    public void showSpinner()
+    {
+        List<String> list = new ArrayList<>();
+        list.add("Tên sách");
+        list.add("Mã sách");
+        list.add("Mã đầu sách");
+        //Tạo Adapter cho spinner
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(),
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, list);
+        //Đặt adapter cho spinner
+        spinner.setAdapter(arrayAdapter);
+    }
+    //Kiểm tra chuỗi có phải number hay không
+    public static boolean isInteger(String str) {
+        try {
+            // Sử dụng phương thức parseInt để cố gắng chuyển đổi chuỗi thành số nguyên
+            Integer.parseInt(str);
+            // Nếu không có ngoại lệ nào xảy ra, chuỗi là số nguyên hợp lệ
+            return true;
+        } catch (NumberFormatException e) {
+            // Nếu có ngoại lệ NumberFormatException xảy ra, chuỗi không phải là số nguyên
+            return false;
         }
     }
 }
