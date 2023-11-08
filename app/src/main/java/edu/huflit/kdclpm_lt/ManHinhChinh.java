@@ -36,7 +36,9 @@ import edu.huflit.kdclpm_lt.DocGia.DetailDocGia;
 import edu.huflit.kdclpm_lt.DocGia.MH_DocGia;
 import edu.huflit.kdclpm_lt.DocGia.UpdateDocGia;
 import edu.huflit.kdclpm_lt.MuonTraSach.AddMuonTra;
+import edu.huflit.kdclpm_lt.MuonTraSach.Detail_MuonTra;
 import edu.huflit.kdclpm_lt.MuonTraSach.MH_MuonTra;
+import edu.huflit.kdclpm_lt.MuonTraSach.QL_MuonTra;
 import edu.huflit.kdclpm_lt.NhanVien.Add_NhanVien;
 import edu.huflit.kdclpm_lt.NhanVien.DetailNhanVien;
 import edu.huflit.kdclpm_lt.NhanVien.MH_NhanVien;
@@ -325,12 +327,26 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         UpdateNhanVien updateNhanVien = new UpdateNhanVien();
         fragmentTransaction.replace(R.id.hcontent_frame, updateNhanVien);
         fragmentTransaction.commit();
-    }public void nextDetailNhanVien()
+    }
+    public void nextDetailNhanVien()
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         DetailNhanVien detailNhanVien = new DetailNhanVien();
         fragmentTransaction.replace(R.id.hcontent_frame, detailNhanVien);
         fragmentTransaction.commit();
     }
-
+    public void nextQLMT()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        QL_MuonTra qlMuonTra = new QL_MuonTra();
+        fragmentTransaction.replace(R.id.hcontent_frame, qlMuonTra);
+        fragmentTransaction.commit();
+    }
+    public void nextDetailMT()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Detail_MuonTra detailMuonTra = new Detail_MuonTra();
+        fragmentTransaction.replace(R.id.hcontent_frame, detailMuonTra);
+        fragmentTransaction.commit();
+    }
 }

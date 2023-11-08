@@ -32,11 +32,17 @@ public class MH_MuonTra extends Fragment {
                 manHinhChinh.nextAddMuonTra();
             }
         });
-
+        img_next_ql_phieu_muon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                manHinhChinh.nextQLMT();
+            }
+        });
         return view;
     }
     public void anhXa()
     {
         img_next_create_phieu_muon = (ImageView) view.findViewById(R.id.next_create_muon_tra);
+        img_next_ql_phieu_muon = (ImageView) view.findViewById(R.id.next_ql_muon_tra);
     }
 }

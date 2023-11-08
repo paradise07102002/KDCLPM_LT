@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -65,6 +66,7 @@ public class UpdateSach extends Fragment {
             int ten_tg_index = cursor.getColumnIndex(DBHelper.TAC_GIA_S);
             int nha_xb_index = cursor.getColumnIndex(DBHelper.NHA_XUAT_BAN_S);
             int nam_xb_index = cursor.getColumnIndex(DBHelper.NAM_XUAT_BAN_S);
+            int mo_ta_index = cursor.getColumnIndex(DBHelper.MO_TA_SACH);
             int image_sach_index = cursor.getColumnIndex(DBHelper.IMAGE_SACH);
 
             cursor.moveToFirst();
@@ -72,6 +74,10 @@ public class UpdateSach extends Fragment {
             ten_tg.setText(cursor.getString(ten_tg_index));
             nha_xb.setText(cursor.getString(nha_xb_index));
             nam_xb.setText(Integer.toString(cursor.getInt(nam_xb_index)));
+            mo_ta_sach.setText(cursor.getString(mo_ta_index));
+            byte[] bytes = cursor.getBlob(image_sach_index);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            img_sach.setImageBitmap(bitmap);
         }
         cursor.close();
 

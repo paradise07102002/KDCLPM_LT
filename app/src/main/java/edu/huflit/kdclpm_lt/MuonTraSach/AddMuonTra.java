@@ -41,6 +41,7 @@ public class AddMuonTra extends Fragment {
         database = new MyDatabase(getActivity());
         manHinhChinh = (ManHinhChinh) getActivity();
         anhXa();
+        showNgay();
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,7 +93,6 @@ public class AddMuonTra extends Fragment {
         String bb = String.format("%02d", month1);
         String cc = String.format("%04d", year1);
         ngay_tra.setText(aa + "-" + bb + "-" + cc);
-
     }
     public boolean kiemTraNhapThongTin()
     {
@@ -186,7 +186,6 @@ public class AddMuonTra extends Fragment {
                 }
             });
             builder.create().show();
-            return;
         }
         else
         {
