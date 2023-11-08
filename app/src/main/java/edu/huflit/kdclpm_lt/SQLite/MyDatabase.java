@@ -91,6 +91,13 @@ public class MyDatabase {
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }
+    //
+    public Cursor getMuonTraByID(int ma_mt)
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_MUON_TRA + " WHERE " + DBHelper.MA_MUON_TRA_MTS + " = " + "'" + ma_mt + "'";
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
     //Thêm mượn trả sách
     public long addMuonTraSach(MuonTraSach muonTraSach)
     {
@@ -149,6 +156,11 @@ public class MyDatabase {
     {
         return database.delete(DBHelper.TABLE_USER, DBHelper.ID_USER + " = " + "'" + ma_nv + "'", null);
     }
+    public long xoaMuonTra(int ma_mt)
+    {
+        return database.delete(DBHelper.TABLE_MUON_TRA, DBHelper.MA_MUON_TRA_MTS + " = " + "'" + ma_mt + "'", null);
+    }
+
     //Lấy dữ liệu đầu sách khi có id đầu sách
     public Cursor layDuLieuDauSachByID(int ma_dau_sach)
     {
@@ -189,6 +201,12 @@ public class MyDatabase {
     public Cursor layDuLieuDocGia()
     {
         String select = "SELECT * FROM " + DBHelper.TABLE_DOC_GIA;
+        Cursor cursor = database.rawQuery(select, null);
+        return cursor;
+    }
+    public Cursor layDuLieuMuonTra()
+    {
+        String select = "SELECT * FROM " + DBHelper.TABLE_MUON_TRA;
         Cursor cursor = database.rawQuery(select, null);
         return cursor;
     }

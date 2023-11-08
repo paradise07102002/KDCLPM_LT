@@ -169,6 +169,7 @@ public class AddDocGia extends Fragment {
                 }
             });
             builder.create().show();
+            return false;
         }
         if (phone.length() == 0)
         {
@@ -187,6 +188,7 @@ public class AddDocGia extends Fragment {
                 }
             });
             builder.create().show();
+            return false;
         }
         if (address.length() == 0)
         {
