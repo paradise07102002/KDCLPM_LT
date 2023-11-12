@@ -163,6 +163,22 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        Cursor cursor = database.getUserByUsername(sharedPreferences.getString("username", null));
+        cursor.moveToFirst();
+        int role_index = cursor.getColumnIndex(DBHelper.ROLE_USER);
+        String role = cursor.getString(role_index);
+        if (role.equals("admin") == false)
+        {
+            Menu menuu = navigationView.getMenu();
+            MenuItem menuItem = menuu.findItem(R.id.nav_ql_nhan_vien);
+            menuItem.setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
         //Nếu drawer đang ở thì khi ấn back sẽ back
         if (drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -180,6 +196,8 @@ public class ManHinhChinh extends AppCompatActivity implements NavigationView.On
         transaction.replace(R.id.hcontent_frame, fragment);
         transaction.commit();
     }
+    //Kiểm tra role
+
     //CHUYỂN FRAGMENT
     //ĐẦU SÁCH
     public void nextQLDauSach()
